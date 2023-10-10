@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import com.recipe.dto.MemberMainDto;
+import com.recipe.entity.Follow;
 import com.recipe.entity.Member;
 
 
@@ -16,6 +17,8 @@ public interface MemberRepository extends JpaRepository<Member, Long> , MemberRe
 		Member findByEmail(String email);
 		
 		Member findByPhoneNumber(String phoneNumber);
+		
+		Member findByNickname(String nickname);
 		
 		//이메일 찾기
 		@Query("SELECT m.email FROM Member m WHERE m.phoneNumber = :phoneNumber")
@@ -45,7 +48,10 @@ public interface MemberRepository extends JpaRepository<Member, Long> , MemberRe
 	List<MemberMainDto> getMemberBestList();
 	
 	
-	
+	@Query(value = "SELECT m.* FROM member m WHERE m.member_id IN (SELECT f.member_id FROM Follow f WHERE f.to_member = ?1)", nativeQuery = true)
+	List<Member> getFollowerList(Long id);
+	@Query(value = "SELECT m.* FROM member m WHERE m.member_id IN (SELECT f.to_member FROM Follow f WHERE f.member_id = ?1)", nativeQuery = true)
+	List<Member> getFollowingList(Long id);
 	
 	
 	

@@ -447,7 +447,7 @@
 		
 		function cartDelete_button(button){
 			var id = $(button).attr("data-cart-id");
-			var url = '/cartDeleteButton'
+			var url = '/cart/cartDeleteButton'
 			paramData = {cartId : id};
 			
 			if (confirm('장바구니에서 삭제하시겠습니까?')){
@@ -489,7 +489,7 @@
    			const goodsCntElement = $(`.text[data-cart-id=${cartId}]`);
     		const goodsCount = goodsCntElement.val();
     		
-			var url = '/cartCountUpdateButton'
+			var url = '/cart/cartCountUpdateButton'
 			
 			const sendData = {
    			      "cartId": cartId,
@@ -532,7 +532,7 @@
 		function cartDelete_checkBok(){
 			
 			var selectedItems = [];
-			var url = '/cartDeletCkeckBox'
+			var url = '/cart/cartDeletCkeckBox'
 			
 			 $('.checked_cart:checked').each(function() {
     				  selectedItems.push($(this).attr('data-cart-id'));
@@ -575,7 +575,7 @@
 
 		function cartDelete_soldout_checkBok() {
 			var selectedItems = [];
-			var url = '/cartDeleteSoldoutCheckBok'
+			var url = '/cart/cartDeleteSoldoutCheckBok'
 			
     		$('.checked_cart').each(function() {
    		 if ($(this).data('cart-status') === 'SOLD_OUT') {

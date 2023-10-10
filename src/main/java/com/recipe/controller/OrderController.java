@@ -79,13 +79,10 @@ public class OrderController {
 	}
 
 //	카트 상품담기
-	@PostMapping(value = "/cartReq")
+	@PostMapping(value = "/cart/cartReq")
 	public @ResponseBody ResponseEntity inqReq(@RequestBody Map<String, Object> requestBody, HttpSession session) {
 
-		if (!isAuthenticated()) {
-			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
-		}
-
+		
 		Long cartCount = orderService.cartReg(requestBody, session);
 		
 		if(cartCount==null) {
@@ -96,12 +93,10 @@ public class OrderController {
 	}
 	
 //	카트 상품 개별삭제
-	@PostMapping(value = "/cartDeleteButton")
+	@PostMapping(value = "/cart/cartDeleteButton")
 	public @ResponseBody ResponseEntity cartDeleteButton(@RequestBody Map<String, Object> requestBody, HttpSession session) {
 		
-		if (!isAuthenticated()) {
-			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
-		}
+	
 		
 		boolean check = orderService.cartDeleteButton(requestBody);
 		
@@ -113,13 +108,10 @@ public class OrderController {
 	}
 	
 //	카트 상품 체크박스 선택삭제
-	@PostMapping(value = "/cartDeletCkeckBox")
+	@PostMapping(value = "/cart/cartDeletCkeckBox")
 	public @ResponseBody ResponseEntity cartDeletCkeckBox(@RequestBody List<Object> requestBody, HttpSession session) {
 		
-		if (!isAuthenticated()) {
-			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
-		}
-		
+	
 		
 		boolean check = orderService.cartDeleteCheckBox(requestBody);
 		
@@ -131,12 +123,9 @@ public class OrderController {
 	}
 	
 //	카트 상품 품절 전체삭제
-	@PostMapping(value = "/cartDeleteSoldoutCheckBok")
+	@PostMapping(value = "/cart/cartDeleteSoldoutCheckBok")
 	public @ResponseBody ResponseEntity cartDeleteSoldoutCheckBok(@RequestBody List<Object> requestBody, HttpSession session) {
-		
-		if (!isAuthenticated()) {
-			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
-		}
+	
 		
 		
 		boolean check = orderService.cartDeleteSoldoutCheckBok(requestBody);
@@ -150,13 +139,10 @@ public class OrderController {
 	
 	
 //	카트 상품 개별수량 변경
-	@PostMapping(value = "/cartCountUpdateButton")
+	@PostMapping(value = "/cart/cartCountUpdateButton")
 	public @ResponseBody ResponseEntity cartCountUpdateButton(@RequestBody Map<String, Object> requestBody, HttpSession session) {
 		
-		if (!isAuthenticated()) {
-			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
-		}
-		
+	
 		String check = orderService.cartCountUpdateButton(requestBody);
 	
 		if("error".equals(check)) {
@@ -173,13 +159,5 @@ public class OrderController {
 	
 	
 
-//	로그인/비로그인 여부 로그인상태면 true
-	private boolean isAuthenticated() {
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
-			return false;
-		}
-		return authentication.isAuthenticated();
-	}
 
 }

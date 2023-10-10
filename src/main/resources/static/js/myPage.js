@@ -350,40 +350,149 @@ function toggleReviews(contentId) {
    
 }
 
-    // 현재 페이지 URL에서 id 추출
-    function extractIdFromUrl() {
-        const currentPageUrl = window.location.href;
-        const urlParts = currentPageUrl.split("/");
-        const idIndex = urlParts.indexOf("profile") + 1; // "profile" 다음 부분이 id
 
-        if (idIndex >= 0 && idIndex < urlParts.length) {
-            return urlParts[idIndex];
-        } else {
-            // id를 찾을 수 없는 경우 기본값 또는 오류 처리를 수행하세요
-            return null;
-        }
+    
+$(document).ready(function() {
+    // 버튼과 ID 값을 가져옵니다.
+    var followingId = $("#followingId").val();
+    var followImage = $("#followImage");
+    var unfollowImage = $("#unfollowImage"); 
+
+    // 팔로우 상태 확인 함수
+    function checkFollowStatus() {
+        $.ajax({
+            url: '/api/follow/check/' + followingId,
+            method: 'GET',
+            success: function(response) {
+				console.log(response);
+                if (response) {
+                    // 이미 팔로우한 상태이므로 언팔로우 버튼 보이기
+                    followImage.hide();
+                    unfollowImage.show();
+                } else {
+                    // 아직 팔로우하지 않은 상태이므로 팔로우 버튼 보이기
+                   followImage.show();
+                    unfollowImage.hide();
+                }
+            },
+            error: function(error) {
+                console.error('Error:', error);
+            }
+        });
     }
 
-$("#followImage").click(function() {
-    var followingId = $("#followingId").val();
+    // 초기 팔로우 상태 확인
+    checkFollowStatus();
 
-    var csrfToken = $('meta[name="_csrf"]').attr("content");
-    var csrfHeader = $('meta[name="_csrf_header"]').attr("content");
+    $("#followImage").click(function() {
+        var followingId = $("#followingId").val();
+        var nickname = $("#nicknameCheck").val();
 
-    $.ajax({
-        url: '/follow/' + followingId,
-        method: 'POST',
-        contentType: 'application/json',
-        headers: {
-            [csrfHeader]: csrfToken
-        },
-        success: function(response) {
-            console.log(response);
-            alert('Followed successfully!');
-        },
-        error: function(error) {
-            console.error('Error:', error);
-        }
+        var csrfToken = $('meta[name="_csrf"]').attr("content");
+        var csrfHeader = $('meta[name="_csrf_header"]').attr("content");
+
+        $.ajax({
+            url: '/follow/' + followingId,
+            method: 'POST',
+            contentType: 'application/json',
+            headers: {
+                [csrfHeader]: csrfToken
+            },
+            success: function(response) {
+                console.log(response);
+                alert(nickname + '님을 팔로우 했습니다.');
+                // 팔로우 상태 확인 다시 호출
+                checkFollowStatus();
+            },
+            error: function(error) {
+                console.error('Error:', error);
+            }
+        });
     });
-}); 
-        
+
+    $("#unfollowImage").click(function() {
+        var followingId = $("#followingId").val();
+        var nickname = $("#nicknameCheck").val();
+        var csrfToken = $('meta[name="_csrf"]').attr("content");
+        var csrfHeader = $('meta[name="_csrf_header"]').attr("content");
+        // 언팔로우 요청 보내기
+        $.ajax({
+            url: '/unfollow/' + followingId, // followingId에 언팔로우 대상의 ID를 설정
+            method: 'DELETE',
+            contentType: 'application/json',
+            headers: {
+                [csrfHeader]: csrfToken
+            },
+            success: function(response) {
+                console.log(response);
+                alert(nickname + '님을 언팔로우 했습니다.');
+                // 팔로우 상태 확인 다시 호출
+                checkFollowStatus();
+            },
+            error: function(error) {
+                console.error('Error:', error);
+            }
+        });
+    });
+    //현재 로그인된 사용자가 팔로우한 팔로잉 삭제
+    // 삭제 버튼을 클릭할 때 이벤트 위임을 통해 처리
+    $(document).on('click', '.unfollow', function() {
+        var button = $(this);
+        var followerId = button.closest('.row').find('#followingId').val();
+        var nickname = button.closest('.row').find('#followingNickname').val();
+        var csrfToken = $('meta[name="_csrf"]').attr("content");
+        var csrfHeader = $('meta[name="_csrf_header"]').attr("content");
+
+        // 언팔로우 요청 보내기
+        $.ajax({
+            url: '/unfollow/' + followerId,
+            method: 'DELETE',
+            contentType: 'application/json',
+            headers: {
+                [csrfHeader]: csrfToken
+            },
+            success: function(response) {
+                console.log(response);
+                alert(nickname + '님을 언팔로우 했습니다.');
+                // 팔로우 상태 확인 다시 호출
+                checkFollowStatus();
+            },
+            error: function(error) {
+                console.error('Error:', error);
+            }
+        });
+    });
+    
+    //현재 로그인된 사용자를 팔로우한 팔로워 삭제
+        // 삭제 버튼을 클릭할 때 이벤트 위임을 통해 처리 
+    $(document).on('click', '.unfollowToMember', function() {
+        var button = $(this);
+        var followerId = button.closest('.row').find('#followerId').val();
+        var nickname = button.closest('.row').find('#followerNickname').val();
+        var csrfToken = $('meta[name="_csrf"]').attr("content");
+        var csrfHeader = $('meta[name="_csrf_header"]').attr("content");
+
+        // 언팔로우 요청 보내기
+        $.ajax({
+            url: '/unfollowToMember/' + followerId,
+            method: 'DELETE',
+            contentType: 'application/json',
+            headers: {
+                [csrfHeader]: csrfToken
+            },
+            success: function(response) {
+                console.log(response);
+                alert(nickname + '님을 팔로워에서 삭제했습니다.');
+                // 팔로우 상태 확인 다시 호출
+                checkFollowStatus();
+            },
+            error: function(error) {
+                console.error('Error:', error);
+            }
+        });
+    });
+
+});
+
+
+

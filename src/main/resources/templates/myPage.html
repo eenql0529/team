@@ -1,26 +1,26 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout1}">
+
 <head>
-<meta charset="UTF-8" />
 <meta name="_csrf" th:content="${_csrf.token}" />
 <meta name="_csrf_header" th:content="${_csrf.headerName}" />
-<meta name="description" content="Yoga Studio Template" />
-<meta name="keywords" content="Yoga, unica, creative, html" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-<title>Yummy | Template</title>
+</head>
 
-<link rel="stylesheet"
-	th:href="@{https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/minty/bootstrap.min.css}"
-	integrity="sha384-H4X+4tKc7b8s4GoMrylmy2ssQYpDHoqzPa9aKXbDwPoPUA3Ra8PA5dGzijN+ePnH"
-	crossorigin="anonymous" />
-<link rel="stylesheet" th:href="@{/css/bootstrap.css}" type="text/css" />
+<th:block layout:fragment="css">
+	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"
+		type="text/css" />
+	<link rel="stylesheet" th:href="@{/css/font-awesome.min.css}"
+		type="text/css" />
+	<link rel="stylesheet" th:href="@{/css/nice-select.css}"
+		type="text/css" />
+	<link rel="stylesheet" th:href="@{/css/slicknav.min.css}"
+		type="text/css" />
+	<link rel="stylesheet" th:href="@{/css/style.css}" type="text/css" />
+	<link rel="stylesheet" th:href="@{/css/myPage.css}" type="text/css" />
 
-<link
-	th:href="@{https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css}"
-	rel="stylesheet" />
-
-<style>
+	<style>
 .recipeList {
 	display: flex !important;
 	margin-top: 20px;
@@ -40,109 +40,54 @@
 }
 </style>
 
-<!-- Google Font -->
-<link
-	th:href="@{https://fonts.googleapis.com/css?family=PT+Sans:400,700&display=swap}"
-	rel="stylesheet" />
+</th:block>
+<div layout:fragment="content" class="layout">
 
-<!-- Css Styles -->
-<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"
-	type="text/css" />
-<link rel="stylesheet" th:href="@{/css/font-awesome.min.css}"
-	type="text/css" />
-<link rel="stylesheet" th:href="@{/css/nice-select.css}" type="text/css" />
-<link rel="stylesheet" th:href="@{/css/slicknav.min.css}"
-	type="text/css" />
-<link rel="stylesheet" th:href="@{/css/style.css}" type="text/css" />
-<link rel="stylesheet" th:href="@{/css/myPage.css}" type="text/css" />
-</head>
 
-<body>
 
-	<!-- Header Section Begin -->
-	<header class="header-section-other">
-		<div class="container-fluid">
-			<div class="logo">
-				<a href="./index.html"><img src="img/little-logo.png" alt="" /></a>
-			</div>
-			<div class="nav-menu">
-				<nav class="main-menu mobile-menu">
-					<ul>
-						<li class="active"><a href="#">Home</a></li>
-						<li><a href="#">Pages</a>
-							<ul class="sub-menu">
-								<li><a href="about-me.html">About Me</a></li>
-								<li><a href="categories.html">Categories</a></li>
-								<li><a href="recipe.html">Recipe</a></li>
-								<li><a href="blog.html">Blog</a></li>
-								<li><a href="contact.html">Contact</a></li>
-							</ul></li>
-						<li><a href="recipe.html">Recipes</a></li>
-						<li><a href="categories.html">Best Of</a></li>
-						<li><a href="contact.html">Contact</a></li>
-					</ul>
-				</nav>
-				<div class="nav-right search-switch">
-					<i class="fa fa-search"></i>
-				</div>
-			</div>
-			<div id="mobile-menu-wrap"></div>
-		</div>
-	</header>
-	<!-- Header End -->
+
+
 
 	<!-- Hero Search Section Begin -->
 
-	<div class=""
-		style="overflow: hidden; position: relative;">
-
-	<div class=""
-		style="overflow: hidden; position: relative;">
+	<div class="container"
+		style="overflow: hidden; position: relative; display: flex; flex-direction: column;">
 
 		<div
-			style="background-image: url(/img/search-bg.jpg); height: 250px; background-repeat: no-repeat; background-size: cover; background-position: top center;"
+			style="background-image: url(/img/search-bg.jpg); height: 250px; background-repeat: no-repeat; background-size: cover; background-position: top center; display: flex; flex-direction: column-reverse;background-color: #b7b7b7;"
 			class="">
-			<div class=""
-				style="display: flex; justify-content: flex-end; align-items: center; flex-direction: row; padding-top: 24px; margin-right: 30px;">
-				<div
-					style="margin-left: 10px; display: flex; align-items: center; flex-direction: column;">
-					<div
-						style="background-image: url(/img/아이콘.png); background-size: cover; background-position: center; height: 45px; width: 80px;">
-						<p
-							style="font-size: 17px; color: #000000; display: flex; justify-content: center; align-items: center; margin-left: 23px; font-weight: 700;">
-							1</p>
-					</div>
-					<p style="color: #ffff">팔로워</p>
-				</div>
-				<div
-					style="margin-left: 10px; display: flex; align-items: center; flex-direction: column;">
-					<div
-						style="background-image: url(/img/아이콘.png); background-size: cover; background-position: center; height: 45px; width: 80px;">
-						<p
-							style="font-size: 17px; color: #000000; display: flex; justify-content: center; align-items: center; margin-left: 23px; font-weight: 700;">
-							1</p>
-					</div>
-					<p style="color: #ffff">팔로잉</p>
+			<div
+				style="gap: 20px; display: flex; flex-direction: row; justify-content: flex-end; margin-bottom: -5px;">
+<p>
+				<a data-toggle="modal" href="#myModal1"
+					style="font-weight: 500; color: rgb(255, 255, 255); margin-right: 4px;">팔로워</a><span
+					th:text="${follower}"
+					style="font-weight: 700; font-size: 15px; line-height: 21px; color: rgb(255, 255, 255);"></span>
+</p>
+				<div style="gap: 20px; display: flex; margin-right: 27px;">
+					<p>
+						<a data-toggle="modal" href="#myModal2"
+							style="font-weight: 500; color: rgb(255, 255, 255); margin-right: 4px;">팔로잉</a><span
+							th:text="${following}"
+							style="font-weight: 700; font-size: 15px; line-height: 21px; color: rgb(255, 255, 255);"></span>
+					</p>
 				</div>
 			</div>
+			<div
+				th:style="'position: absolute; left: 50%; bottom: 21%; transform: translateX(-50%); width: 150px; height: 150px; background-color: #ffffff; border-radius: 50%; border: 3px solid #e9ecef; background-image: url(' + ${myPageDto.imgUrl}  + '); background-size: cover; background-position: center;'"></div>
 		</div>
-		<div
-			th:style="'position: absolute; left: 50%; bottom: 17%; transform: translateX(-50%); width: 160px; height: 160px; background-color: #ffffff; border-radius: 50%; border: 3px solid #e9ecef; background-image: url(' + ${myPageDto.imgUrl}  + '); background-size: cover; background-position: center;'"></div>
-		<div
-			style="height: 113px; background-color: #ffff; display: flex; justify-content: center; align-items: flex-end; "
-			class="">
-			<div class="col-10"
-				style="display: flex; justify-content: center; align-items: center; flex-direction: column; top: 18px;">
-				<div style="">
-					<h4 th:text="${myPageDto.nickname}" style="font-weight: 700">짱구님</h4>
-				</div>
-				<div style="">
-					<p style="border-bottom: 1px solid #bdbdbd"
-						th:text="${myPageDto.introduce}">소개</p>
-				</div>
+		<div class=""
+			style="display: flex; justify-content: flex-end; align-items: center; flex-direction: column; top: 18px; border-bottom: 1px solid #dee2e6; height: 120px;">
+			<div style="">
+			<input type="hidden" id="nicknameCheck"
+						th:value="${myPageDto.nickname}">
+				<h4 th:text="${myPageDto.nickname}" style="font-weight: 700">짱구님</h4>
+			</div>
+			<div style="">
+				<p th:text="${myPageDto.introduce}">소개</p>
 			</div>
 		</div>
-	</div>
+
 	</div>
 	<!-- Hero Search Section End -->
 
@@ -151,48 +96,42 @@
 	<section class="contact-section spad">
 		<div class="container" style="display: flex">
 			<div class="col-3">
-				<div class="col-lg-12" >
+				<div class="col-lg-12">
 					<div>
 						<p
 							style="display: flex; justify-content: center; font-size: 20px; font-weight: 600; padding-bottom: 12px; padding-top: 15px; border-bottom: 3px solid #858585b8;">
 							MY PAGE</p>
 					</div>
 					<div class="list-group list-group-light"
-						style="padding-bottom: 40px; ">
-						<div><p>쇼핑</p>
-						<a 
-							class="list-group-item list-group-item-action list-group-item-light mypage-list"
-							style="font-size: 14px; cursor: pointer" >
-							주문목록|배송정보</a>
-						<a 
-							class="list-group-item list-group-item-action list-group-item-light mypage-list"
-							style="font-size: 14px; cursor: pointer" >
-							찜리스트</a>
-						<a 
-							class="list-group-item list-group-item-action list-group-item-light mypage-list"
-							style="font-size: 14px; cursor: pointer">
-							포인트</a>
+						style="padding-bottom: 40px;">
+
+						<div>
+							<p>레시피</p>
+							<a onclick="showContent('recipe')"
+								class="list-group-item list-group-item-action list-group-item-light mypage-list"
+								style="font-size: 14px; cursor: pointer" data-menu="recipe">
+								레시피</a> <a onclick="showContent('favorite')"
+								class="list-group-item list-group-item-action list-group-item-light mypage-list"
+								style="font-size: 14px; cursor: pointer" data-menu="favorite">
+								찜한 레시피</a> <a onclick="showContent('comments')"
+								class="list-group-item list-group-item-action list-group-item-light mypage-list"
+								style="font-size: 14px; cursor: pointer" data-menu="comments">
+								댓글</a> <a onclick="showContent('reviews')"
+								class="list-group-item list-group-item-action list-group-item-light mypage-list"
+								style="font-size: 14px; cursor: pointer" data-menu="reviews">
+								요리후기</a>
 						</div>
-						<div><p>레시피</p><a onclick="showContent('recipe')"
-							class="list-group-item list-group-item-action list-group-item-light mypage-list"
-							style="font-size: 14px; cursor: pointer" data-menu="recipe">
-							레시피</a> <a onclick="showContent('favorite')"
-							class="list-group-item list-group-item-action list-group-item-light mypage-list"
-							style="font-size: 14px; cursor: pointer" data-menu="favorite">
-							찜한 레시피</a> <a onclick="showContent('comments')"
-							class="list-group-item list-group-item-action list-group-item-light mypage-list"
-							style="font-size: 14px; cursor: pointer" data-menu="comments">
-							댓글</a> <a onclick="showContent('reviews')"
-							class="list-group-item list-group-item-action list-group-item-light mypage-list"
-							style="font-size: 14px; cursor: pointer" data-menu="reviews">
-							요리후기</a> </div>
-							<div>
+						<div>
 							<p>회원정보</p>
 							<a onclick="showContent('edit')"
-							class="list-group-item list-group-item-action list-group-item-light mypage-list"
-							style="font-size: 14px; cursor: pointer" data-menu="edit"> 회원
-							정보 수정</a></div>
-							
+								class="list-group-item list-group-item-action list-group-item-light mypage-list"
+								style="font-size: 14px; cursor: pointer" data-menu="edit">
+								회원 정보 수정</a> <a th:value="${myPageDto.id}"
+								th:onclick="deleteMember([[${myPageDto.id}]])"
+								style="font-size: 14px; cursor: pointer"
+								class="list-group-item list-group-item-action list-group-item-light mypage-list">회원탈퇴</a>
+						</div>
+
 					</div>
 				</div>
 			</div>
@@ -209,9 +148,7 @@
 						</div>
 						<div
 							style="display: flex; flex-direction: row; align-items: center">
-							<div style="">
-								<a>최신순</a> <a>조회순</a> <a>스크랩순</a>
-							</div>
+
 						</div>
 					</div>
 					<div class="mypage-content" th:if="${!recipeList.isEmpty()}">
@@ -220,14 +157,11 @@
 							<p style="font-size: 28px; font-weight: 500;">| RECIPE |</p>
 							<p style="font-size: 15px; font-weight: 500;">레시피 목록</p>
 						</div>
-						<div style="
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 45px;
-">
-						<button type="submit"
-											style="width: 110px;height: 36px;display: flex;align-items: center;justify-content: center;margin-top: 4px;background-color: #808000bd;color: #fff;font-size: 14px;border:none;"
-												class="btn btn-outline-danger">레시피등록</button>
+						<div
+							style="display: flex; justify-content: flex-end; margin-top: 45px;">
+							<a href="/myPage/recipe/new"><button 
+								style="width: 110px; height: 36px; display: flex; align-items: center; justify-content: center; margin-top: 4px; background-color: #808000bd; color: #fff; font-size: 14px; border: none;"
+								class="btn btn-outline-danger">레시피등록</button></a>
 						</div>
 
 						<table style="border-bottom: 1px solid #dee2e6; margin-top: 15px;">
@@ -264,9 +198,10 @@
 										</div>
 
 									</th>
-									<th class="col-2" style="text-align: center;"><p th:text="${recipe.count}"></p></th>
+									<th class="col-2" style="text-align: center;"><p
+											th:text="${recipe.count}"></p></th>
 									<th class="col-1" style="text-align: center;">
-									<P th:text="${recipe.bookmarkCount}"></P>
+										<P th:text="${bookmarkCount}"></P>
 									</th>
 									<th class="col-2" style="text-align: center;">
 										<div
@@ -300,8 +235,9 @@
 							<p style="font-size: 15px; font-weight: 500">자랑하고 싶은 나만의 레시피!
 								공유하고 싶은 멋진 레시피를 올려 주세요.</p>
 							<br>
-							<button type="submit" class="btn btn-outline-danger"
-								style="width: 110px;height: 36px;display: flex;align-items: center;justify-content: center;margin-top: 4px;background-color: #808000bd;color: #fff;font-size: 14px; border:none;">레시피 등록</button>
+							<a href="/myPage/recipe/new"><button type="submit" class="btn btn-outline-danger"
+								style="width: 110px; height: 36px; display: flex; align-items: center; justify-content: center; margin-top: 4px; background-color: #808000bd; color: #fff; font-size: 14px; border: none;">레시피
+								등록</button></a>
 						</div>
 
 					</div>
@@ -315,9 +251,7 @@
 						<div style="display: flex; align-items: center"></div>
 						<div
 							style="display: flex; flex-direction: row; align-items: center; min-height: 49px;">
-							<div style="">
-								<a>최신순</a> <a>조회순</a> <a>스크랩순</a>
-							</div>
+
 						</div>
 					</div>
 					<div class="mypage-content" th:if="${!bookmarkList.isEmpty()}">
@@ -417,9 +351,7 @@
 						style="display: flex; flex-direction: row; justify-content: space-between; border-bottom: 1px solid #adb5bd;">
 						<div
 							style="display: flex; flex-direction: row; align-items: center; min-height: 49px;">
-							<div style="">
-								<a>최신순</a> <a>조회순</a> <a>스크랩순</a>
-							</div>
+	
 						</div>
 					</div>
 					<div class="mypage-content" th:if="${!myCommentList.isEmpty()}">
@@ -500,91 +432,94 @@
 				</div>
 
 
-<!--요리후기 목록  -->
+				<!--요리후기 목록  -->
 				<div id="reviews" class="content" style="display: none;">
-<div
+					<div
 						style="display: flex; flex-direction: row; justify-content: space-between; border-bottom: 1px solid #adb5bd;">
-						<div style="display: flex; align-items: center">							
-						<a  onclick="toggleReviews('myReviewList')"
+						<div style="display: flex; align-items: center">
+							<a onclick="toggleReviews('myReviewList')"
 								class="list-group-item list-group-item-action list-group-item-light mypage-top cursor my active">
-								내가쓴후기</a>
-								 <a onclick="toggleReviews('receivedReviewList')"
+								내가쓴후기</a> <a onclick="toggleReviews('receivedReviewList')"
 								class="list-group-item list-group-item-action list-group-item-light mypage-top cursor you">
-								받은후기</a></div>
+								받은후기</a>
+						</div>
 						<div
 							style="display: flex; flex-direction: row; align-items: center; min-height: 49px;">
-							<div style="">
-								<a>최신순</a> <a>조회순</a> <a>스크랩순</a>
-							</div>
+
 						</div>
 					</div>
-					<div class="mypage-content" id="myReviewList" th:if="${myReviewList != Null}">
-						<div 
+					<div class="mypage-content" id="myReviewList"
+						th:if="${myReviewList != Null}">
+						<div
 							style="display: flex; flex-direction: column; align-items: center;">
 							<p style="font-size: 28px; font-weight: 500;">| REVIEW |</p>
 							<p style="font-size: 15px; font-weight: 500;">레시피 후기 목록</p>
 						</div>
 
-						<table  style="border-bottom: 1px solid #dee2e6; margin-top: 30px;">
+						<table style="border-bottom: 1px solid #dee2e6; margin-top: 30px;">
 							<tbody style="display: flex; flex-direction: column;">
 								<tr
 									style="height: 45px; background-color: #f9fbf7; display: flex; align-items: center;">
 
-									<th class="col-7 recipeList-th" style="text-align: center;">레시피 후기</th>
+									<th class="col-7 recipeList-th" style="text-align: center;">레시피
+										후기</th>
 									<th class="col-2 recipeList-th" style="text-align: center;">별점</th>
 									<th class="col-2 recipeList-th" style="text-align: center;">작성일</th>
 									<th class="col-1 recipeList-th" style="text-align: center;">수정/삭제</th>
 								</tr>
 
 								<tr class="mytr" th:each="reviews : ${myReviewList}"
-									style="display: flex; align-items: center;margin-top: 10px;">
+									style="display: flex; align-items: center; margin-top: 10px;">
 
-									<th class="col-7" 
+									<th class="col-7"
 										style="text-align: center; margin-left: 0; padding: 0;">
 										<div
-											style="display: flex;flex-direction: row;align-items: flex-start;">
+											style="display: flex; flex-direction: row; align-items: flex-start;">
 
 											<img th:src="${reviews.recipeId.imageUrl}"
 												style="width: 150px; height: 145px;">
-											<div style="width: 100%;display: flex;flex-direction: column;margin-left: 20px;align-items: flex-start;margin-top: 8px;">
-												<p th:text="${reviews.recipeId.title} + '/' + ${reviews.recipeId.subTitle} + '(' + ${reviews.recipeId.member.nickname} + ')'"
-													style="font-size: 14px;font-weight: 600;margin-bottom: 0;color: #9d9d9d;"></p>
+											<div
+												style="width: 100%; display: flex; flex-direction: column; margin-left: 20px; align-items: flex-start; margin-top: 8px;">
+												<p
+													th:text="${reviews.recipeId.title} + '/' + ${reviews.recipeId.subTitle} + '(' + ${reviews.recipeId.member.nickname} + ')'"
+													style="font-size: 14px; font-weight: 600; margin-bottom: 0; color: #9d9d9d;"></p>
 
 												<p th:text="${reviews.review.content}"
-													style="font-size: 13px;font-weight: 600;margin-top: 13px;"></p>
+													style="font-size: 13px; font-weight: 600; margin-top: 13px;"></p>
 											</div>
 										</div>
 
 									</th>
 									<th class="col-2" style="text-align: center;">
-										<div 
+										<div
 											style="display: flex; flex-direction: column; align-items: center;">
 
-        <p th:if="${reviews.review.reting == 1}">
-            <img src="/img/5.png" style="width: 100%;">
-        </p>
-        <p th:if="${reviews.review.reting == 2}">
-            <img src="/img/6.png" style="width: 100%;">
-        </p>
-        <p th:if="${reviews.review.reting == 3}">
-            <img src="/img/7.png" style="width: 100%;">
-        </p>
-        <p th:if="${reviews.review.reting == 4}">
-            <img src="/img/8.png" style="width: 100%;">
-        </p>
-        <p th:if="${reviews.review.reting == 5}">
-            <img src="/img/9.png" style="width: 100%;">
-        </p>
+											<p th:if="${reviews.review.reting == 1}">
+												<img src="/img/5.png" style="width: 100%;">
+											</p>
+											<p th:if="${reviews.review.reting == 2}">
+												<img src="/img/6.png" style="width: 100%;">
+											</p>
+											<p th:if="${reviews.review.reting == 3}">
+												<img src="/img/7.png" style="width: 100%;">
+											</p>
+											<p th:if="${reviews.review.reting == 4}">
+												<img src="/img/8.png" style="width: 100%;">
+											</p>
+											<p th:if="${reviews.review.reting == 5}">
+												<img src="/img/9.png" style="width: 100%;">
+											</p>
 										</div>
 									</th>
 									<th class="col-2"
 										style="display: flex; flex-direction: column; align-items: center;">
-										
+
 										<p th:text="${reviews.regTime}"
-											style="margin-top: 2px; margin-bottom: 25px; "></p>
+											style="margin-top: 2px; margin-bottom: 25px;"></p>
 
 									</th>
-									<th class="col-1" style="text-align: center;">										<div
+									<th class="col-1" style="text-align: center;">
+										<div
 											style="display: flex; flex-direction: column; align-items: center;">
 											<button type="submit"
 												style="width: 70px; height: 33px; display: flex; align-items: center; justify-content: center;"
@@ -593,7 +528,8 @@
 												th:onclick="'deleteReview(' + ${reviews.review.id} + ')'"
 												style="width: 70px; height: 33px; display: flex; align-items: center; justify-content: center; margin-top: 4px;"
 												class="btn btn-outline-danger">삭제</button>
-										</div></th>
+										</div>
+									</th>
 
 								</tr>
 
@@ -602,83 +538,90 @@
 							</tbody>
 						</table>
 					</div>
-						<div class="mypage-content" id="myReviewListIsEmpty" style="align-items: center;">
-    <img class="mypage-content-logo" src="/img/test4.svg" />
-    <div style="display: flex; flex-direction: column; align-items: center">
-        <p style="font-size: 24px; font-weight: 800; margin-bottom: 5px">직접 요리해보셨나요? 요리후기를 올려주세요 !</p>
-        <p style="font-size: 15px; font-weight: 500">받은 후기가 없습니다.</p>
-    </div>
+					<div class="mypage-content" id="myReviewListIsEmpty"
+						style="align-items: center;">
+						<img class="mypage-content-logo" src="/img/test4.svg" />
+						<div
+							style="display: flex; flex-direction: column; align-items: center">
+							<p style="font-size: 24px; font-weight: 800; margin-bottom: 5px">직접
+								요리해보셨나요? 요리후기를 올려주세요 !</p>
+							<p style="font-size: 15px; font-weight: 500">받은 후기가 없습니다.</p>
+						</div>
 
 
-</div>
+					</div>
 
 
 					<div class="mypage-content" id="receivedReviewList">
-						<div 
+						<div
 							style="display: flex; flex-direction: column; align-items: center;">
 							<p style="font-size: 28px; font-weight: 500;">| REVIEW |</p>
 							<p style="font-size: 15px; font-weight: 500;">레시피 후기 목록</p>
 						</div>
-						<table  style="border-bottom: 1px solid #dee2e6; margin-top: 30px;">
+						<table style="border-bottom: 1px solid #dee2e6; margin-top: 30px;">
 							<tbody style="display: flex; flex-direction: column;">
 								<tr
 									style="height: 45px; background-color: #f9fbf7; display: flex; align-items: center;">
 
-									<th class="col-7 recipeList-th" style="text-align: center;">레시피 후기</th>
+									<th class="col-7 recipeList-th" style="text-align: center;">레시피
+										후기</th>
 									<th class="col-2 recipeList-th" style="text-align: center;">별점</th>
 									<th class="col-2 recipeList-th" style="text-align: center;">작성일</th>
 									<th class="col-1 recipeList-th" style="text-align: center;">수정/삭제</th>
 								</tr>
 
 								<tr class="receivedtr" th:each="review : ${receivedReviewList}"
-									style="display: flex; align-items: center;margin-top: 10px;">
+									style="display: flex; align-items: center; margin-top: 10px;">
 
 									<th class="col-7"
 										style="text-align: center; margin-left: 0; padding: 0;">
 										<div
-											style="display: flex;flex-direction: row;align-items: flex-start;">
+											style="display: flex; flex-direction: row; align-items: flex-start;">
 
 											<img th:src="${review.recipeId.imageUrl}"
 												style="width: 150px; height: 145px;">
-											<div style="width: 100%;display: flex;flex-direction: column;margin-left: 20px;align-items: flex-start;margin-top: 8px;">
-												<p th:text="${review.recipeId.title} + '/' + ${review.recipeId.subTitle} + '(' + ${review.recipeId.member.nickname} + ')'"
-													style="font-size: 14px;font-weight: 600;margin-bottom: 0;color: #9d9d9d;"></p>
+											<div
+												style="width: 100%; display: flex; flex-direction: column; margin-left: 20px; align-items: flex-start; margin-top: 8px;">
+												<p
+													th:text="${review.recipeId.title} + '/' + ${review.recipeId.subTitle} + '(' + ${review.recipeId.member.nickname} + ')'"
+													style="font-size: 14px; font-weight: 600; margin-bottom: 0; color: #9d9d9d;"></p>
 
 												<p th:text="${review.review.content}"
-													style="font-size: 13px;font-weight: 600;margin-top: 13px;"></p>
+													style="font-size: 13px; font-weight: 600; margin-top: 13px;"></p>
 											</div>
 										</div>
 
 									</th>
 									<th class="col-2" style="text-align: center;">
-										<div 
+										<div
 											style="display: flex; flex-direction: column; align-items: center;">
 
-        <p th:if="${review.review.reting == 1}">
-            <img src="/img/5.png" style="width: 100%;">
-        </p>
-        <p th:if="${review.review.reting == 2}">
-            <img src="/img/6.png" style="width: 100%;">
-        </p>
-        <p th:if="${review.review.reting == 3}">
-            <img src="/img/7.png" style="width: 100%;">
-        </p>
-        <p th:if="${review.review.reting == 4}">
-            <img src="/img/8.png" style="width: 100%;">
-        </p>
-        <p th:if="${review.review.reting == 5}">
-            <img src="/img/9.png" style="width: 100%;">
-        </p>
+											<p th:if="${review.review.reting == 1}">
+												<img src="/img/5.png" style="width: 100%;">
+											</p>
+											<p th:if="${review.review.reting == 2}">
+												<img src="/img/6.png" style="width: 100%;">
+											</p>
+											<p th:if="${review.review.reting == 3}">
+												<img src="/img/7.png" style="width: 100%;">
+											</p>
+											<p th:if="${review.review.reting == 4}">
+												<img src="/img/8.png" style="width: 100%;">
+											</p>
+											<p th:if="${review.review.reting == 5}">
+												<img src="/img/9.png" style="width: 100%;">
+											</p>
 										</div>
 									</th>
 									<th class="col-2"
 										style="display: flex; flex-direction: column; align-items: center;">
-										
+
 										<p th:text="${review.regTime}"
-											style="margin-top: 2px; margin-bottom: 25px; "></p>
+											style="margin-top: 2px; margin-bottom: 25px;"></p>
 
 									</th>
-									<th class="col-1" style="text-align: center;">										<div
+									<th class="col-1" style="text-align: center;">
+										<div
 											style="display: flex; flex-direction: column; align-items: center;">
 											<button type="submit"
 												style="width: 70px; height: 33px; display: flex; align-items: center; justify-content: center;"
@@ -687,7 +630,8 @@
 												th:onclick="'deleteReview(' + ${review.review.id} + ')'"
 												style="width: 70px; height: 33px; display: flex; align-items: center; justify-content: center; margin-top: 4px;"
 												class="btn btn-outline-danger">삭제</button>
-										</div></th>
+										</div>
+									</th>
 
 								</tr>
 
@@ -696,17 +640,22 @@
 							</tbody>
 						</table>
 
+					</div>
+
+					<div class="mypage-content" id="receivedReviewListIsEmpty"
+						style="align-items: center;">
+						<img class="mypage-content-logo" src="/img/test4.svg"
+							style="margin-bottom: 0px !important;" />
+						<div
+							style="display: flex; flex-direction: column; align-items: center">
+							<p style="font-size: 24px; font-weight: 800; margin-bottom: 5px">받은
+								후기가 없습니다</p>
+							<p style="font-size: 15px; font-weight: 500">더 많은 레시피를 등록해보세요
+								!</p>
 						</div>
 
-<div class="mypage-content" id="receivedReviewListIsEmpty"  style="align-items: center;">
-    <img class="mypage-content-logo" src="/img/test4.svg" style=" margin-bottom:0px !important;" />
-    <div style="display: flex; flex-direction: column; align-items: center">
-        <p style="font-size: 24px; font-weight: 800; margin-bottom: 5px">받은 후기가 없습니다</p>
-        <p style="font-size: 15px; font-weight: 500">더 많은 레시피를 등록해보세요 !</p>
-    </div>
-						
 
-				</div>
+					</div>
 				</div>
 
 
@@ -729,8 +678,8 @@
 
 
 
-							<div>
-								<p>프로필 사진
+							<div style="margin-top: 30px;">
+								<p class="col-form-label mt-4">프로필 사진
 								<p />
 								<div>
 									<label id="imagePreviewLabel" for="fileInput"
@@ -756,36 +705,12 @@ svg {
 								<div class="form-group">
 									<label class="col-form-label mt-4" for="nickname">닉네임</label> <input
 										th:field="${myPageDto.nickname}" type="text"
-										class="form-control" id="nickname" style="width: 315px;"
-										onblur="checkNicknameAvailability()">
+										placeholder="사용하실 닉네임을 2~8자 사이로 입력해주세요" maxlength="8"
+										class="form-control" id="nickname" style="width: 315px;">
 								</div>
-								<div id="nicknameFeedback" class="form-group">
-									<div class="form-group has-success" style="display: none;">
-										<label class="form-label mt-4" for="inputValid"><font
-											style="vertical-align: inherit;"><font
-												style="vertical-align: inherit;">유효한 입력</font></font></label> <input
-											type="text" value="correct value"
-											class="form-control is-valid" id="inputValid">
-										<div class="valid-feedback">
-											<font style="vertical-align: inherit;"><font
-												style="vertical-align: inherit;">성공! </font><font
-												style="vertical-align: inherit;">해냈습니다.</font></font>
-										</div>
-									</div>
-									<div class="form-group has-danger" style="display: none;">
-										<label class="form-label mt-4" for="inputInvalid"><font
-											style="vertical-align: inherit;"><font
-												style="vertical-align: inherit;">잘못된 입력</font></font></label> <input
-											type="text" value="wrong value"
-											class="form-control is-invalid" id="inputInvalid">
-										<div class="invalid-feedback">
-											<font style="vertical-align: inherit;"><font
-												style="vertical-align: inherit;">죄송합니다. 해당 사용자 이름은 사용
-													중입니다. </font><font style="vertical-align: inherit;">다른 것을
-													시도하시겠습니까?</font></font>
-										</div>
-									</div>
-								</div>
+
+
+
 
 								<div class="form-group">
 									<label class="col-form-label mt-4" for="inputDefault"><font
@@ -798,11 +723,6 @@ svg {
 
 
 
-
-
-
-
-
 								<div class="form-group">
 									<label for="exampleInputEmail1" class="form-label mt-4">이메일</label>
 									<input style="width: 315px;" th:field="${myPageDto.email}"
@@ -811,6 +731,11 @@ svg {
 										id="emailHelp" class="form-text text-muted">이메일은 변경이
 										불가합니다.</small>
 								</div>
+
+
+
+
+
 								<div class="form-group">
 									<label for="exampleInputEmail1" class="form-label mt-4">휴대폰번호</label>
 									<input style="width: 315px;"
@@ -818,13 +743,6 @@ svg {
 										class="form-control" id="exampleInputEmail1"
 										aria-describedby="emailHelp" oninput="oninputPhone(this)"
 										maxlength="14"> <small>(-)를 제외한 숫자만 입력해주세요</small>
-								</div>
-								<div class="form-group">
-									<label for="exampleInputPassword1" class="form-label mt-4">비밀번호</label>
-									<input style="width: 315px;" th:field="${myPageDto.password}"
-										type="password" class="form-control"
-										id="exampleInputPassword1" placeholder="Password"
-										autocomplete="off">
 								</div>
 
 
@@ -847,9 +765,10 @@ svg {
 									placeholder="참고항목" style="display: none;">
 							</div>
 							<div
-								style="display: flex; flex-direction: column; align-items: center; margin-top: 160px;">
+								style="display: flex; flex-direction: column; align-items: center; margin-top: 115px;">
 								<button type="submit" class="btn btn-outline-danger"
-									style="width: 168px;height: 43px;display: flex;align-items: center;justify-content: center;background-color: #808000bd;color: #fff;font-size: 16px;margin-bottom: 15px; border:none;">회원정보 수정</button>
+									style="width: 168px; height: 43px; display: flex; align-items: center; justify-content: center; background-color: #808000bd; color: #fff; font-size: 16px; margin-bottom: 15px; border: none;">회원정보
+									수정</button>
 								<a th:value="${myPageDto.id}"
 									th:onclick="deleteMember([[${myPageDto.id}]])"
 									style="border-bottom: 1px solid; cursor: pointer;">회원탈퇴</a>
@@ -862,57 +781,7 @@ svg {
 		</div>
 
 	</section>
-	<!-- Contact Section End -->
-	<!-- Similar Recipe Section Begin -->
-	<section class="similar-recipe spad">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-3 col-md-6">
-					<div class="similar-item">
-						<a href="#"><img src="/img/cat-feature/small-7.jpg" alt="" /></a>
-						<div class="similar-text">
-							<div class="cat-name">Vegan</div>
-							<h6>Italian Tiramisu with Coffe</h6>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6">
-					<div class="similar-item">
-						<a href="#"><img src="/img/cat-feature/small-6.jpg" alt="" /></a>
-						<div class="similar-text">
-							<div class="cat-name">Vegan</div>
-							<h6>Dry Cookies with Corn</h6>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6">
-					<div class="similar-item">
-						<a href="#"><img src="/img/cat-feature/small-5.jpg" alt="" /></a>
-						<div class="similar-text">
-							<div class="cat-name">Vegan</div>
-							<h6>Asparagus with Pork Loin and Vegetables</h6>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6">
-					<div class="similar-item">
-						<a href="#"><img src="img/cat-feature/small-4.jpg" alt="" /></a>
-						<div class="similar-text">
-							<div class="cat-name">Vegan</div>
-							<h6>Smoked Salmon mini Sandwiches with Onion</h6>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- Similar Recipe Section End -->
 
-	<!-- Footer Section Begin -->
-
-	<!-- Footer Section End -->
-
-	<!-- Search model -->
 
 	<div class="search-model">
 		<div class="h-100 d-flex align-items-center justify-content-center">
@@ -922,21 +791,138 @@ svg {
 			</form>
 		</div>
 	</div>
-	<!-- Search model end -->
+			<div class="modal fade" id="myModal1" role="dialog">
 
-	<!-- Js Plugins -->
-	<script th:src="@{/js/jquery-3.3.1.min.js}"></script>
-	<script th:src="@{/js/bootstrap.min.js}"></script>
-	<script th:src="@{/js/jquery.slicknav.js}"></script>
-	<script th:src="@{/js/jquery.nice-select.min.js}"></script>
-	<script th:src="@{/js/mixitup.min.js}"></script>
-	<script th:src="@{/js/main.js}"></script>
+			<div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" style="
+    display: flex;
+    justify-content: center;
+">
+
+				<div class="modal-content" style="
+    width: 430px;
+">
+
+					<div class="modal-header">
+
+						<h4 class="modal-title">팔로워</h4>
+						<button type="button" class="close" data-dismiss="modal">×</button>
+
+					</div>
+
+<div class="modal-body">
+<th:block th:each="follower , status:${followerList}">
+
+						<div class="row" style="display: flex; flex-direction: row; align-items: center;margin-bottom: 15px;">
+							
+								<div class="" th:style="'background-image: url(' + ${follower.imgUrl} +');width: 70px;height: 70px;border: 1px solid #c4c4c470;border-radius: 50%;margin-left: 20px;background-position: center;background-size: cover'"></div>
+								<div class="col-6">
+								<input type="hidden" id="followerNickname"
+						th:value="${follower.nickname}">
+									<p th:text="${follower.nickname}"
+									 style="margin: 0;margin-left: 10px;font-weight: 600;font-size: 16px;">보봉초</p>
+								</div>
+								<div class="col" style="
+    display: flex;
+    justify-content: flex-end;
+">
+<input type="hidden" id="followerId" th:value="${follower.id}">
+									<button th:if="${email}" class="unfollowToMember"style="
+    border-radius: 8px;
+    width: 80px;
+    height: 35px;
+    border: 0;
+    font-size: 14px;
+    font-weight: 700;
+">삭제</button>
+								</div>
+						
+						</div>
+</th:block>
+					</div>
+
+					<div class="modal-footer">
+
+						<p>팝업 footer</p>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+		<div class="modal fade" id="myModal2" role="dialog">
+
+			<div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" style="
+    display: flex;
+    justify-content: center;
+">
+
+				<div class="modal-content" style="
+    width: 430px;
+">
+
+					<div class="modal-header">
+
+						<h4 class="modal-title">팔로잉</h4>
+						<button type="button" class="close" data-dismiss="modal">×</button>
+
+					</div>
+
+<div class="modal-body">
+<th:block th:each="follower , status:${followingList}">
+
+						<div class="row" style="display: flex; flex-direction: row; align-items: center;margin-bottom: 15px;">
+							
+								<div class="" th:style="'background-image: url(' + ${follower.imgUrl} +');width: 70px;height: 70px;border: 1px solid #c4c4c470;border-radius: 50%;margin-left: 20px;background-position: center;background-size: cover'"></div>
+								<div class="col-6">
+								<input type="hidden" id="followingNickname"
+						th:value="${follower.nickname}">
+									<p th:text="${follower.nickname}"
+									 style="margin: 0;margin-left: 10px;font-weight: 600;font-size: 16px;">보봉초</p>
+								</div>
+								<div class="col" style="
+    display: flex;
+    justify-content: flex-end;
+">
+<input type="hidden" id="followingId" th:value="${follower.id}">
+									<button class="unfollow" style="
+    border-radius: 8px;
+    width: 80px;
+    height: 35px;
+    border: 0;
+    font-size: 14px;
+    font-weight: 700;
+">삭제</button>
+								</div>
+						
+						</div>
+</th:block>
+					</div>
+
+					<div class="modal-footer">
+
+						<p>팝업 footer</p>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+</div>
+
+
+<!-- Search model end -->
+<th:block layout:fragment="script">
 	<script th:src="@{/js/myPage.js}"></script>
-	<script
-		th:src="@{//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js}"></script>
-
 	<script th:inline="javascript">
 		
 	</script>
+</th:block>
+
+
 </body>
+
 </html>

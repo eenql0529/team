@@ -164,9 +164,9 @@
 				<th:block th:each="bestMember , status:${rankMemberList}">
 							<li class="rec_list" style="display:flex">
 					<div class="num">[[${status.index+1}]]</div>
-					<a th:href="'/profile/' + ${bestMember.id}" class="clr">
+					<a th:href="'/profile/' + ${bestMember.nickname}" class="clr">
 						<div class="img_box">
-							<img src="img/장어덮밥.jpg" alt="등록된 이미지가 없습니다">
+							<img th:src="${bestMember.imgUrl}" alt="회원이미지">
 							</div>
 						<div class="text_box">
 							<p class="s_title">자개소개 칸</p>

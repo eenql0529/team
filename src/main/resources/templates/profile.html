@@ -1,130 +1,124 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout1}">
+
 <head>
-<meta charset="UTF-8" />
 <meta name="_csrf" th:content="${_csrf.token}" />
 <meta name="_csrf_header" th:content="${_csrf.headerName}" />
-<meta name="description" content="Yoga Studio Template" />
-<meta name="keywords" content="Yoga, unica, creative, html" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-<title>Yummy | Template</title>
+</head>
 
-<link rel="stylesheet"
-	th:href="@{https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/minty/bootstrap.min.css}"
-	integrity="sha384-H4X+4tKc7b8s4GoMrylmy2ssQYpDHoqzPa9aKXbDwPoPUA3Ra8PA5dGzijN+ePnH"
-	crossorigin="anonymous" />
-<link rel="stylesheet" th:href="@{/css/bootstrap.css}" type="text/css" />
+<th:block layout:fragment="css">
+	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"
+		type="text/css" />
+	<link rel="stylesheet" th:href="@{/css/font-awesome.min.css}"
+		type="text/css" />
+	<link rel="stylesheet" th:href="@{/css/nice-select.css}"
+		type="text/css" />
+	<link rel="stylesheet" th:href="@{/css/slicknav.min.css}"
+		type="text/css" />
+	<link rel="stylesheet" th:href="@{/css/style.css}" type="text/css" />
+	<link rel="stylesheet" th:href="@{/css/myPage.css}" type="text/css" />
 
-<link
-	th:href="@{https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css}"
-	rel="stylesheet" />
-
-<style>
+	<style>
 .thmb_list02 .search_sort {
-    display: block;
-    width: 100%;
-    padding: 0 0;
-    position: relative;
+	display: block;
+	width: 100%;
+	padding: 0 0;
+	position: relative;
 }
 
 .thmb_list02 .search_sort {
-    display: block;
-    width: 100%;
-    padding: 0 0;
-    position: relative;
+	display: block;
+	width: 100%;
+	padding: 0 0;
+	position: relative;
 }
 
 .thmb_list02 .search_sort p {
-    color: #000;
+	color: #000;
 }
 
 .thmb_list02 .search_sort .sort_util {
-    position: absolute;
-    right: 0;
-    top: 0px;
+	position: absolute;
+	right: 0;
+	top: 0px;
 }
 
 .thmb_list02 .search_sort .sort_util li {
-    float: left;
-    padding: 0 10px 0 20px;
-    position: relative;
+	float: left;
+	padding: 0 10px 0 20px;
+	position: relative;
 }
 
 .thmb_list02 .search_sort .sort_util li a {
-    font-size: 16px;
-    color: #666;
-    line-height: 1;
+	font-size: 16px;
+	color: #666;
+	line-height: 1;
 }
 
 .thmb_list02 .list_area {
-
-	margin-top:10px;
-	margin-bottom:10px;
-
-
-    width: 100%;
-    display: table;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	width: 100%;
+	display: table;
 }
 
 .thmb_list02 .item {
-    float: left;
-    width: 262px;
-    min-height: 300px;
-    margin-right: 20px;
-    vertical-align: top;
-    padding: 15px 0 30px;
+	float: left;
+	width: 262px;
+	min-height: 300px;
+	margin-right: 20px;
+	vertical-align: top;
+	padding: 15px 0 30px;
 }
 
 .thmb_list02 .thmb {
-    position: relative;
-    width: 100%;
-    height: 215px;
+	position: relative;
+	width: 100%;
+	height: 215px;
 }
 
 .thmb_list02 .img {
-		position: relative;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
+	position: relative;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
 }
 
 .thmb_list02 .img img {
-
 	border: 1px solid #dedede;
-
-    width: 270px;
-    height: 215px;
+	width: 270px;
+	height: 215px;
 }
 
-
 .thmb_list02 .info .info_tag {
-	padding:2px 0;
-	text-align:center;
-    min-height: 25px;
+	padding: 2px 0;
+	text-align: center;
+	min-height: 25px;
 }
 
 .thmb_list02 .info .info_tag span {
-    font-size: 14px;
-    color: #666;
-    margin-right: 8px;
+	font-size: 14px;
+	color: #666;
+	margin-right: 8px;
 }
 
 .ellip {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 .thmb_list02 .info .info_title p {
-	text-align:center;
-    font-size: 18px;
-    color: #333;
-    font-weight: bold;
+	text-align: center;
+	font-size: 18px;
+	color: #333;
+	font-weight: bold;
 }
 
 .thmb_list02 .item:nth-child(4n) {
-    margin-right: 0;
+	margin-right: 0;
 }
 
 .challange {
@@ -133,170 +127,171 @@
 }
 
 .challange p {
-	font-size: 12px  !important;
-    color: #666 !important;
+	font-size: 12px !important;
+	color: #666 !important;
 }
 
 .challange p:nth-child(1) {
 	margin-right: 10px;
 }
 
-
-
 .back {
-	display:flex;
-	justify-content:center;
-	width:100%;   
+	display: flex;
+	justify-content: center;
+	width: 100%;
 	position: absolute;
 	top: 88%;
-	background: rgb(0, 0, 0 , 0.5);
+	background: rgb(0, 0, 0, 0.5);
 }
 
 .back p {
-	color:white !important;
-	font-size: 12px  !important;
+	color: white !important;
+	font-size: 12px !important;
 }
 
 .back p:nth-child(1) {
 	margin-right: 10px;
-
 }
 
 .book_page {
-	margin-bottom:20px;
+	margin-bottom: 20px;
 }
 
 .list_box {
 	border-top: 1px solid #dedede;
-    border-bottom: 1px solid #dedede;
+	border-bottom: 1px solid #dedede;
 }
 
 .search_form {
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
+	margin: 0 auto;
+	display: flex;
+	justify-content: center;
 }
 
 .form_select {
-    font-size: .8rem;
-    width: 85px;
-    height: 35px;
-    border-radius: 0px;
-    padding: 5px;
-    text-align: center;
-    font-weight: bold;
-    background-color: rgb(246, 246, 246);
-    border-top-left-radius: 6px;
-    border-bottom-left-radius: 6px;
+	font-size: .8rem;
+	width: 85px;
+	height: 35px;
+	border-radius: 0px;
+	padding: 5px;
+	text-align: center;
+	font-weight: bold;
+	background-color: rgb(246, 246, 246);
+	border-top-left-radius: 6px;
+	border-bottom-left-radius: 6px;
 }
 
 .form-control {
-    border: 1px solid #e8e8e8;
+	border: 1px solid #e8e8e8;
 }
 
 .form_search {
-    width: 271px;
-    height: 35px;
-    border-radius: 0px;
-    border: 1px solid #dee2e6;
+	width: 271px;
+	height: 35px;
+	border-radius: 0px;
+	border: 1px solid #dee2e6;
 }
 
 .form_search_bt:not(:hover) {
-    transition: 0.2s ease-out;
+	transition: 0.2s ease-out;
 }
 
 .form_search_bt:not(:hover) {
-    transition: 0.2s ease-out;
+	transition: 0.2s ease-out;
 }
 
 .form_search_bt {
-    width: 68px;
-    height: 35px;
-    border: none;
-    border-top-right-radius: 6px;
-    border-bottom-right-radius: 6px;
-    background-color:RGB(160, 191, 107);
-    color: white;
-    font-weight: bold;
+	width: 68px;
+	height: 35px;
+	border: none;
+	border-top-right-radius: 6px;
+	border-bottom-right-radius: 6px;
+	background-color: RGB(160, 191, 107);
+	color: white;
+	font-weight: bold;
 }
 
 .category_form {
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
+	margin: 0 auto;
+	display: flex;
+	justify-content: center;
 }
 
 .category_form a {
-	margin:0 10px;
+	margin: 0 10px;
 }
 
 .common_sp_caption_rv_name {
-    color: #999;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    font-size: 14px;
-    vertical-align: 0;
-    padding: 0 1px 7px 0;
-    font-weight: 300;
+	color: #999;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	font-size: 14px;
+	vertical-align: 0;
+	padding: 0 1px 7px 0;
+	font-weight: 300;
 }
 
 .common_sp_caption_rv_name img {
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    margin: 0 4px -2px 0;
-    vertical-align: text-bottom;
+	width: 22px;
+	height: 22px;
+	border-radius: 50%;
+	margin: 0 4px -2px 0;
+	vertical-align: text-bottom;
 }
-  #topMenu {           
-                        height: 30px;
-                        width: 100%;
-    display: flex;
-    justify-content: center;
-                }
-                #topMenu ul li {                      
-                        list-style: none;         
-                        color: white;               
-                        background-color: #2d2d2d;  
-                        float: left;               
-                        line-height: 30px;         
-                        vertical-align: middle;    
-                        text-align: center;       
-                }
-                #topMenu .menuLink {                              
-                        text-decoration:none;                     
-                        color: white;                            
-                        display: block;                         
-                        width: 150px;                            
-                        font-size: 12px;                           
-                        font-weight: bold;                         
-                        font-family: "Trebuchet MS", Dotum, Arial; 
-                        height: 37px;
-    					line-height: 37px;
-                }
-                #topMenu .menuLink:hover {            
-                        color: red;                   
-                        background-color: #4d4d4d;   
-                }
+
+#topMenu {
+	height: 30px;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+#topMenu ul li {
+	list-style: none;
+	color: white;
+	background-color: #2d2d2d;
+	float: left;
+	line-height: 30px;
+	vertical-align: middle;
+	text-align: center;
+}
+
+#topMenu .menuLink {
+	text-decoration: none;
+	color: white;
+	display: block;
+	width: 150px;
+	font-size: 12px;
+	font-weight: bold;
+	font-family: "Trebuchet MS", Dotum, Arial;
+	height: 37px;
+	line-height: 37px;
+}
+
+#topMenu .menuLink:hover {
+	color: red;
+	background-color: #4d4d4d;
+}
 
 .item-ranking {
-    position: absolute;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    display: block;
-    font-size: 14px;
-    line-height: 14px;
-    padding: 3px 0;
-    width: 20px;
-    height: 20px;
-    background-color: RGB(160, 191, 107);
-    color: #fff;
-    font-weight: 700;
-    text-align: center;
-    vertical-align: middle;
-
+	position: absolute;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	display: block;
+	font-size: 14px;
+	line-height: 14px;
+	padding: 3px 0;
+	width: 20px;
+	height: 20px;
+	background-color: RGB(160, 191, 107);
+	color: #fff;
+	font-weight: 700;
+	text-align: center;
+	vertical-align: middle;
 }
+
 .recipeList {
 	display: flex !important;
 	margin-top: 20px;
@@ -314,120 +309,81 @@
 .cursor {
 	cursor: pointer;
 }
-.profile-recipe{
-    border-bottom: 2px solid #e5e5e5;
-    padding: 5px;
-    font-size: 23px;
-    font-weight: 900;
-    color: #fc0254;
+
+.profile-recipe {
+	border-bottom: 2px solid #e5e5e5;
+	padding: 5px;
+	font-size: 23px;
+	font-weight: 900;
+	color: #fc0254;
 }
 </style>
 
-<!-- Google Font -->
-<link
-	th:href="@{https://fonts.googleapis.com/css?family=PT+Sans:400,700&display=swap}"
-	rel="stylesheet" />
+</th:block>
+<div layout:fragment="content" class="layout">
 
-<!-- Css Styles -->
-<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"
-	type="text/css" />
-<link rel="stylesheet" th:href="@{/css/font-awesome.min.css}"
-	type="text/css" />
-<link rel="stylesheet" th:href="@{/css/nice-select.css}" type="text/css" />
-<link rel="stylesheet" th:href="@{/css/slicknav.min.css}"
-	type="text/css" />
-<link rel="stylesheet" th:href="@{/css/style.css}" type="text/css" />
-<link rel="stylesheet" th:href="@{/css/myPage.css}" type="text/css" />
-</head>
 
-<body>
 	<!-- Page Preloder -->
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
 
-	<!-- Header Section Begin -->
-	<header class="header-section-other">
-		<div class="container-fluid">
-			<div class="logo">
-				<a href="./index.html"><img src="img/little-logo.png" alt="" /></a>
-			</div>
-			<div class="nav-menu">
-				<nav class="main-menu mobile-menu">
-					<ul>
-						<li class="active"><a href="#">Home</a></li>
-						<li><a href="#">Pages</a>
-							<ul class="sub-menu">
-								<li><a href="about-me.html">About Me</a></li>
-								<li><a href="categories.html">Categories</a></li>
-								<li><a href="recipe.html">Recipe</a></li>
-								<li><a href="blog.html">Blog</a></li>
-								<li><a href="contact.html">Contact</a></li>
-							</ul></li>
-						<li><a href="recipe.html">Recipes</a></li>
-						<li><a href="categories.html">Best Of</a></li>
-						<li><a href="contact.html">Contact</a></li>
-					</ul>
-				</nav>
-				<div class="nav-right search-switch">
-					<i class="fa fa-search"></i>
-				</div>
-			</div>
-			<div id="mobile-menu-wrap"></div>
-		</div>
-	</header>
-	<!-- Header End -->
 
 	<!-- Hero Search Section Begin -->
-	<div class=""
-		style="overflow: hidden; position: relative;">
+	<div class="container"
+		style="overflow: hidden; position: relative; display: flex; flex-direction: column;">
 		<div
-			style="background-image: url(/img/search-bg.jpg);height: 250px;background-repeat: no-repeat;background-size: cover;background-position: top center;display: flex;flex-direction: column-reverse;justify-content: space-between;align-items: flex-end;"
+			style="background-image: url(/img/search-bg.jpg); height: 250px; background-repeat: no-repeat; background-size: cover; background-position: top center; display: flex; flex-direction: column; justify-content: space-between; background-color: #b7b7b7;"
 			class="">
-						<div style="margin-right: 14px;margin-bottom: 5px;">			 <!-- 팔로우 버튼 -->
-<input type="hidden" id="followingId" th:value="${myPageDto.id}">
-<img src="/img/follow.png" id="followImage" alt="Follow" style="cursor:pointer;"></div>
-			<div class=""
-				style="display: flex; justify-content: flex-end; align-items: center; flex-direction: row; padding-top: 24px; margin-right: 30px;">
-				<div
-					style="margin-left: 10px; display: flex; align-items: center; flex-direction: column;">
-					<div
-						style="background-image: url(/img/아이콘.png); background-size: cover; background-position: center; height: 45px; width: 80px;">
-						<p
-							style="font-size: 17px; color: #000000; display: flex; justify-content: center; align-items: center; margin-left: 23px; font-weight: 700;">
-							1</p>
-					</div>
-					<p style="color: #ffff">팔로워</p>
-				</div>
-				<div
-					style="margin-left: 10px; display: flex; align-items: center; flex-direction: column;">
-					<div
-						style="background-image: url(/img/아이콘.png); background-size: cover; background-position: center; height: 45px; width: 80px;">
-						<p
-							style="font-size: 17px; color: #000000; display: flex; justify-content: center; align-items: center; margin-left: 23px; font-weight: 700;">
-							1</p>
-					</div>
-					
-
-
-    <!-- 언팔로우 버튼 -->
-    <button id="unfollowBtn" onclick="unfollowUser()" style="display: none;">Unfollow</button>
-					<p style="color: #ffff">팔로잉</p>
+			<div
+				style="margin-right: 22px; margin-bottom: 5px; display: flex; justify-content: flex-end; margin-top: 13px;">
+				<!-- 팔로우 버튼 -->
+				<input type="hidden" id="followingId" th:value="${myPageDto.id}">
+				<img th:if="${!email}" src="/img/follow.png" id="followImage"
+					alt="Follow" style="cursor: pointer;">
+				<!-- 언팔로우 버튼 -->
+				<input type="hidden" id="followingId" th:value="${myPageDto.id}">
+				<img th:if="${!email}" src="/img/unfollow3.png" id="unfollowImage"
+					alt="Unfollow" style="cursor: pointer; display: none;">
+			</div>
+			<div
+				style="gap: 20px; display: flex; flex-direction: row; justify-content: flex-end; margin-bottom: -5px;">
+<p>
+				<a data-toggle="modal" href="#myModal1"
+					style="font-weight: 500; color: rgb(255, 255, 255); margin-right: 4px;">팔로워</a><span
+					th:text="${follower}"
+					style="font-weight: 700; font-size: 15px; line-height: 21px; color: rgb(255, 255, 255);"></span>
+</p>
+				<div style="gap: 20px; display: flex; margin-right: 27px;">
+					<p>
+						<a data-toggle="modal" href="#myModal2"
+							style="font-weight: 500; color: rgb(255, 255, 255); margin-right: 4px;">팔로잉</a><span
+							th:text="${following}"
+							style="font-weight: 700; font-size: 15px; line-height: 21px; color: rgb(255, 255, 255);"></span>
+					</p>
 				</div>
 			</div>
+
+
+
 		</div>
 		<div
-			th:style="'position: absolute; left: 50%; bottom: 17%; transform: translateX(-50%); width: 160px; height: 160px; background-color: #ffffff; border-radius: 50%; border: 3px solid #e9ecef; background-image: url(' + ${myPageDto.imgUrl}  + '); background-size: cover; background-position: center;'"></div>
+			th:style="'position: absolute; left: 50%; bottom: 21%; transform: translateX(-50%); width: 150px; height: 150px; background-color: #ffffff; border-radius: 50%; border: 3px solid #e9ecef; background-image: url(' + ${myPageDto.imgUrl}  + '); background-size: cover; background-position: center;'"></div>
 		<div
-			style="height: 113px; background-color: #ffff; display: flex; justify-content: center; align-items: flex-end; "
+			style="border-bottom: 1px solid #dee2e6; height: 120px; background-color: #ffff; display: flex; justify-content: center; align-items: flex-end;"
 			class="">
 
 
-			<div class="col-10"
+			<div class=""
 				style="display: flex; justify-content: center; align-items: center; flex-direction: column; top: 18px;">
 				<div style="">
-					<h4 th:text="${myPageDto.nickname} + '님의 레시피'" style="font-weight: 700"></h4>
+					<input type="hidden" id="nicknameCheck"
+						th:value="${myPageDto.nickname}">
+					<h4 th:text="${myPageDto.nickname} + '님의 레시피'"
+						style="font-weight: 700"></h4>
 				</div>
 				<div style="">
-					<p style="border-bottom: 1px solid #bdbdbd"
-						th:text="${myPageDto.introduce}">소개</p>
+					<p th:text="${myPageDto.introduce}">소개</p>
 				</div>
 			</div>
 		</div>
@@ -439,165 +395,227 @@
 
 
 
-    <!-- Single Recipe Section Begin -->
-  	<div class="site-section mt-5 mb-5" style="
-    padding-top: 85px;
-">
-	<div class="container">
-		<div class="thmb_list02 pt60">
-		        
-					<div>
-			<p class="profile-recipe">| TOP RECIPES |</p>
-			</div>
-		<div class="list_area" style="
-    margin-bottom: 85px;
-    min-height: 50px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-">
-			
-			
-			<th:block th:each="recipe , status:${popularRecipeList}">
-			<div class="item">
-				<div class="thmb">
-					<a th:href="'/recipe/' + ${recipe.id}">
-					<div class="img">
-					<div class="scale">
-					<img th:src="${recipe.imageUrl}" alt="레시피명">
-					<div class="back">
-						
-						<p>조회수 : [[${recipe.count}]] </p> <p> 북마크수 : [[${recipe.bookmarkCount}]] </p>
-										
-					</div> 
-					</div>
-					</div>
-						
-					</a>
-					
+	<!-- Single Recipe Section Begin -->
+	<div class="site-section mt-5 mb-5" style="padding-top: 85px;">
+		<div class="container">
+			<div class="thmb_list02 pt60">
+
+				<div>
+					<p class="profile-recipe">| TOP RECIPES |</p>
 				</div>
-				<div class="info">
-					<div class="info_tag">
-					
-					<span>[[${recipe.subTitle}]]</span>
-					
-					</div>
-					<div class="info_title ellip"> <p>[[${recipe.title}]]</p></div>
-					<div class="info_title ellip challange"> <p>난이도 : [[${recipe.level}]]</p> <p>소요시간 : [[${recipe.durTime}]]</p>  </div>
+				<div class="list_area"
+					style="margin-bottom: 85px; min-height: 50px; display: flex; flex-wrap: wrap; justify-content: flex-start;">
+
+
+					<th:block th:each="recipe , status:${popularRecipeList}">
+						<div class="item">
+							<div class="thmb">
+								<a th:href="'/recipe/' + ${recipe.id}">
+									<div class="img">
+										<div class="scale">
+											<img th:src="${recipe.imageUrl}" alt="레시피명">
+											<div class="back">
+
+												<p>조회수 : [[${recipe.count}]]</p>
+												<p>북마크수 : [[${recipe.bookmarkCount}]]</p>
+
+											</div>
+										</div>
+									</div>
+
+								</a>
+
+							</div>
+							<div class="info">
+								<div class="info_tag">
+
+									<span>[[${recipe.subTitle}]]</span>
+
+								</div>
+								<div class="info_title ellip">
+									<p>[[${recipe.title}]]</p>
+								</div>
+								<div class="info_title ellip challange">
+									<p>난이도 : [[${recipe.level}]]</p>
+									<p>소요시간 : [[${recipe.durTime}]]</p>
+								</div>
+							</div>
+						</div>
+					</th:block>
+
+				</div>
+				<div>
+					<p class="profile-recipe">| ALL RECIPES |</p>
+				</div>
+				<div class="list_area"
+					style="margin-bottom: 85px; min-height: 50px; display: flex; flex-wrap: wrap; justify-content: flex-start;">
+
+					<th:block th:each="recipe , status:${allRecipeList}">
+						<div class="item">
+							<div class="thmb">
+								<a th:href="'/recipe/' + ${recipe.id}">
+									<div class="img">
+										<div class="scale">
+											<img th:src="${recipe.imageUrl}" alt="레시피명">
+											<div class="back">
+
+												<p>조회수 : [[${recipe.count}]]</p>
+												<p>북마크수 : [[${recipe.bookmarkCount}]]</p>
+
+											</div>
+										</div>
+									</div>
+
+								</a>
+
+							</div>
+							<div class="info">
+								<div class="info_tag">
+
+									<span>[[${recipe.subTitle}]]</span>
+
+								</div>
+								<div class="info_title ellip">
+									<p>[[${recipe.title}]]</p>
+								</div>
+								<div class="info_title ellip challange">
+									<p>난이도 : [[${recipe.level}]]</p>
+									<p>소요시간 : [[${recipe.durTime}]]</p>
+								</div>
+							</div>
+						</div>
+					</th:block>
+
 				</div>
 			</div>
-			</th:block>
-			
-		</div>				<div>
-			<p class="profile-recipe">| ALL RECIPES |</p>
-			</div>	
-		<div class="list_area" style="
-    margin-bottom: 85px;
-    min-height: 50px;
+
+		</div>
+		<div class="modal fade" id="myModal1" role="dialog">
+
+			<div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" style="
     display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: center;
 ">
+
+				<div class="modal-content" style="
+    width: 430px;
+">
+
+					<div class="modal-header">
+
+						<h4 class="modal-title">팔로워</h4>
+						<button type="button" class="close" data-dismiss="modal">×</button>
+
+					</div>
+
+<div class="modal-body">
+<th:block th:each="follower , status:${followerList}">
+
+						<div class="row" style="display: flex; flex-direction: row; align-items: center;margin-bottom: 15px;">
+							
+								<div class="" th:style="'background-image: url(' + ${follower.imgUrl} +');width: 70px;height: 70px;border: 1px solid #c4c4c470;border-radius: 50%;margin-left: 20px;background-position: center;background-size: cover'"></div>
+								<div class="col-6">
+									<input type="hidden" id="followerNickname"
+						th:value="${follower.nickname}">
+									<a th:text="${follower.nickname}"th:href="'/profile/'+${follower.nickname}"style="margin: 0;margin-left: 10px;font-weight: 600;font-size: 16px;color:#2d2f30c9;"></a>
+								</div>
+								<div class="col" style="
+    display: flex;
+    justify-content: flex-end;
+">
+<input type="hidden" id="followerId" th:value="${follower.id}">
+									<button th:if="${email}" class="unfollowToMember"style="
+    border-radius: 8px;
+    width: 80px;
+    height: 35px;
+    border: 0;
+    font-size: 14px;
+    font-weight: 700;
+">삭제</button>
+								</div>
+						
+						</div>
+</th:block>
+					</div>
+
+					<div class="modal-footer">
+
+						<p>팝업 footer</p>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+		<div class="modal fade" id="myModal2" role="dialog">
+
+			<div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" style="
+    display: flex;
+    justify-content: center;
+">
+
+				<div class="modal-content" style="
+    width: 430px;
+">
+
+					<div class="modal-header">
+
+						<h4 class="modal-title">팔로잉</h4>
+						<button type="button" class="close" data-dismiss="modal">×</button>
+
+					</div>
+
+<div class="modal-body">
+<th:block th:each="follower , status:${followingList}">
+
+						<div class="row" style="display: flex; flex-direction: row; align-items: center;margin-bottom: 15px;">
+							
+								<div class="" th:style="'background-image: url(' + ${follower.imgUrl} +');width: 70px;height: 70px;border: 1px solid #c4c4c470;border-radius: 50%;margin-left: 20px;background-position: center;background-size: cover'"></div>
+								<div class="col-6">
+									<input type="hidden" id="followingNickname"
+						th:value="${follower.nickname}">
+						<a th:text="${follower.nickname}"th:href="'/profile/'+${follower.nickname}"style="margin: 0;margin-left: 10px;font-weight: 600;font-size: 16px;color:#2d2f30c9;"></a>
+									
+								</div>
+								<div class="col" style="
+    display: flex;
+    justify-content: flex-end;
+">
+<input type="hidden" id="followingId" th:value="${follower.id}">
+									<button th:if="${email}" class="unfollow" style="
+    border-radius: 8px;
+    width: 80px;
+    height: 35px;
+    border: 0;
+    font-size: 14px;
+    font-weight: 700;
+">삭제</button>
+
 				
-			<th:block th:each="recipe , status:${allRecipeList}">
-			<div class="item">
-				<div class="thmb">
-					<a th:href="'/recipe/' + ${recipe.id}">
-					<div class="img">
-					<div class="scale">
-					<img th:src="${recipe.imageUrl}" alt="레시피명">
-					<div class="back">
+								</div>
 						
-						<p>조회수 : [[${recipe.count}]] </p> <p> 북마크수 : [[${recipe.bookmarkCount}]]</p>
-										
-					</div> 
+						</div>
+</th:block>
 					</div>
+
+					<div class="modal-footer">
+
+						<p>팝업 footer</p>
+
 					</div>
-						
-					</a>
-					
+
 				</div>
-				<div class="info">
-					<div class="info_tag">
-					
-					<span>[[${recipe.subTitle}]]</span>
-					
-					</div>
-					<div class="info_title ellip"> <p>[[${recipe.title}]]</p></div>
-					<div class="info_title ellip challange"> <p>난이도 : [[${recipe.level}]]</p> <p>소요시간 : [[${recipe.durTime}]]</p>  </div>
-				</div>
+
 			</div>
-			</th:block>
-			
+
 		</div>
-		</div>
-    	
 	</div>
-</div>
-	
-	
 
 	<!-- Contact Section End -->
-	<!-- Similar Recipe Section Begin -->
-	<section class="similar-recipe spad">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-3 col-md-6">
-					<div class="similar-item">
-						<a href="#"><img src="/img/cat-feature/small-7.jpg" alt="" /></a>
-						<div class="similar-text">
-							<div class="cat-name">Vegan</div>
-							<h6>Italian Tiramisu with Coffe</h6>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6">
-					<div class="similar-item">
-						<a href="#"><img src="/img/cat-feature/small-6.jpg" alt="" /></a>
-						<div class="similar-text">
-							<div class="cat-name">Vegan</div>
-							<h6>Dry Cookies with Corn</h6>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6">
-					<div class="similar-item">
-						<a href="#"><img src="/img/cat-feature/small-5.jpg" alt="" /></a>
-						<div class="similar-text">
-							<div class="cat-name">Vegan</div>
-							<h6>Asparagus with Pork Loin and Vegetables</h6>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6">
-					<div class="similar-item">
-						<a href="#"><img src="img/cat-feature/small-4.jpg" alt="" /></a>
-						<div class="similar-text">
-							<div class="cat-name">Vegan</div>
-							<h6>Smoked Salmon mini Sandwiches with Onion</h6>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- Similar Recipe Section End -->
 
-	<!-- Footer Section Begin -->
 
-	<!-- Footer Section End -->
-
-	<!-- Search model -->
-
-	<div class="search-model">
-		<div class="h-100 d-flex align-items-center justify-content-center">
-			<div class="search-close-switch">+</div>
-			<form class="search-model-form">
-				<input type="text" id="search-input" placeholder="Search here....." />
-			</form>
-		</div>
-	</div>
-	<!-- Search model end -->
 
 	<!-- Js Plugins -->
 	<script th:src="@{/js/jquery-3.3.1.min.js}"></script>
@@ -613,5 +631,5 @@
 	<script th:inline="javascript">
 		
 	</script>
-</body>
+	</body>
 </html>

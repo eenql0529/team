@@ -1,6 +1,7 @@
 package com.recipe.controller;
 
 import java.security.Principal;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -16,12 +17,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.recipe.dto.MyPageDto;
+import com.recipe.entity.Follow;
 import com.recipe.entity.Member;
 import com.recipe.entity.Recipe;
 import com.recipe.repository.BookMarkRepository;
 import com.recipe.repository.CommentRepository;
 import com.recipe.repository.FollowRepository;
 import com.recipe.repository.MemberRepository;
+import com.recipe.service.MemberService;
 import com.recipe.service.MyPageService;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -33,6 +36,7 @@ import lombok.RequiredArgsConstructor;
 public class MypageController {
 	
 	private final MyPageService myPageService;
+	private final MemberService memberService;
 	private final MemberRepository memberRepository;
 	private final CommentRepository commentRepository;
 	private final BookMarkRepository bookmarkRepository;
@@ -56,11 +60,28 @@ public class MypageController {
 		List<MyPageDto> myReviewList = myPageService.getMyReview(id);
 		List<MyPageDto> receivedReviewList = myPageService.getReceivedReview(id);
 
+		int follower = followRepository.countFromMember(id);
+		int following = followRepository.countToMember(id);
 		
+		List<Member> followerList = myPageService.getFollowerList(id);
+		List<Member> followingList = myPageService.getFollowingList(id);
+		
+		int bookmarkCount= 0;
+	       for (Recipe recipe : recipeList) {
+	            Long recipeId = recipe.getId();
+	             bookmarkCount = bookmarkRepository.countByRecipeId(recipeId);
+	        }
+
+		
+		model.addAttribute("followingList",followingList);
+		model.addAttribute("followerList",followerList);
+		model.addAttribute("follower",follower);
+		model.addAttribute("following",following);
 		model.addAttribute("receivedReviewList" , receivedReviewList);
 		model.addAttribute("myReviewList" ,  myReviewList);
 		model.addAttribute("myCommentList" , myCommentList);
 		model.addAttribute("bookmarkList" , bookmarkList);
+		model.addAttribute("bookmarkCount" , bookmarkCount);
 
 		model.addAttribute("recipeList" , recipeList); //레시피목록
 		model.addAttribute("myPageDto",myPageDto); //회원정보
@@ -71,8 +92,17 @@ public class MypageController {
 		
 	}
 	//프로필 보여주기
-	@GetMapping(value="/profile/{id}")
-	public String profile(@PathVariable("id")Long id,Model model,Principal principal ) {
+	@GetMapping(value="/profile/{nickname}")
+	public String profile(@PathVariable("nickname")String nickname,Model model,HttpSession session ) {
+		
+		Member member = memberRepository.findByNickname(nickname);
+		
+		if(member == null) {
+			return "/";
+		}
+		
+		Long id = member.getId();
+		
 		myPageService.getFollowingCount(id);		
 		Member myPageDto = memberRepository.getfindmemberbyid(id);
 		List<Recipe> allRecipeList =myPageService.getAllRecipeList(id);
@@ -81,9 +111,22 @@ public class MypageController {
             Long recipeId = recipe.getId();
             int bookmarkCount = bookmarkRepository.countByRecipeId(recipeId);
         }
-     
+        
+        String email = session.getAttribute("email").toString();
+		int follower = followRepository.countFromMember(id);
+		int following = followRepository.countToMember(id);
+		
+		
+		List<Member> followerList = myPageService.getFollowerList(id);
+		List<Member> followingList = myPageService.getFollowingList(id);
 
-        model.addAttribute("email",principal.getName().equals(myPageDto.getEmail()));
+
+		
+		model.addAttribute("followingList",followingList);
+		model.addAttribute("followerList",followerList);
+		model.addAttribute("follower",follower);
+		model.addAttribute("following",following);
+        model.addAttribute("email",email.equals(myPageDto.getEmail()));
 		model.addAttribute("myPageDto",myPageDto);//회원정보
 		model.addAttribute("allRecipeList" , allRecipeList); //레시피목록
 		model.addAttribute("popularRecipeList" , popularRecipeList); //레시피목록
@@ -227,6 +270,21 @@ public class MypageController {
         return followRepository.existsByToMemberAndMember(toMember.getId(), fromMember);
     }
     
+	//후기목록 -> 후기삭제
+	@DeleteMapping(value = "/unfollowToMember/{followerId}")
+	public ResponseEntity<String> unfollowToMember(@PathVariable Long followerId, Principal principal) {
+	    // 팔로우 대상 사용자의 정보를 가져옵니다.
+	    Member following = memberRepository.findById(followerId)
+	        .orElseThrow(() -> new EntityNotFoundException("Following user not found"));
+
+	    // 로그인한 사용자의 정보를 가져옵니다.
+	    String followerEmail = principal.getName();
+	    Member follower = memberRepository.findByEmail(followerEmail);
+		
+	    myPageService.unfollowTofollower(follower.getId(), following.getId());
+	    return ResponseEntity.ok("Unfollowed successfully.");
+		
+	}
     
 	
 }

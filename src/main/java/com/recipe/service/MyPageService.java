@@ -37,7 +37,7 @@ import lombok.extern.java.Log;
 @Transactional
 public class MyPageService {
 
-	private final String imgLocation = "C:/recipe/profile";
+	private final String imgLocation = "C:/yummy/";
 	private final MemberRepository memberRepository;
 	private final RecipeRepository recipeRepository;
 	private final BookMarkRepository bookMarkRepository;
@@ -90,7 +90,7 @@ public class MyPageService {
 			//oriImgName이 빈문자열이 아니라면 이미지 파일 업로드
 			imgName = uploadFile(imgLocation, 
 					oriImgName, imgFile.getBytes());
-			imgUrl = "/img/profile/" + imgName;
+			imgUrl = "/img/" + imgName;
 		}
 		    
 		member.updateImg(oriImgName, imgName, imgUrl);
@@ -113,7 +113,7 @@ public class MyPageService {
 			
 			String oriImgName = imgFile.getOriginalFilename();
 			String imgName = uploadFile(imgLocation, oriImgName, imgFile.getBytes());
-			String imgUrl = "/img/profile/" + imgName;
+			String imgUrl = "/img/" + imgName;
 			System.out.println(imgUrl+"askjgnaskjnaskjgnasgkj");
 			//update쿼리문 실행
 			/* ★★★ 한번 insert를 진행하면 엔티티가 영속성 컨텍스트에 저장이 되므로 
@@ -336,6 +336,16 @@ public class MyPageService {
 	    return true;
 	}
 	
+	//로그인한 사용자가 자기를 팔로우한 팔로워삭제
+	public void unfollowTofollower(Long toMemberId, Long fromMemberId) {
+		Member toMember = memberRepository.findById(toMemberId)
+				.orElseThrow(() -> new EntityNotFoundException("To member not found"));
+		Member fromMember = memberRepository.findById(fromMemberId)
+				.orElseThrow(() -> new EntityNotFoundException("From member not found"));
+		
+		followRepository.deleteByToMemberAndMember(toMember.getId(), fromMember);
+	}
+	
 	//팔로우확인
     public boolean isFollowing(Long toMemberId, Long fromMemberId) {
         // 팔로우 테이블에서 toUserId와 fromUserId로 데이터가 존재하는지 확인
@@ -353,6 +363,23 @@ public class MyPageService {
     	
     	Member member = memberRepository.findById(fromMemberId) .orElseThrow(() -> new EntityNotFoundException("To member not found"));
 
+    }
+    
+    @Transactional(readOnly = true)
+    public List<Member> getFollowerList(Long toMember){
+    	List<Member> follows = memberRepository.getFollowerList(toMember);
+    	
+    	
+    	return follows;
+    	
+    }
+    @Transactional(readOnly = true)
+    public List<Member> getFollowingList(Long fromMember){
+    	List<Member> follows = memberRepository.getFollowingList(fromMember);
+    	
+    	
+    	return follows;
+    	
     }
 }
 

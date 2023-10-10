@@ -79,13 +79,13 @@ public class Member extends BaseEntity {
 	private String oriImgName; // 원본이미지 이름
 
 	private String imgName; // 바뀐 사진이름(보안을위해)
+
 	
 	// member 엔티티 수정
 	public void editMember(MyPageDto myPageDto) {
 		this.nickname = myPageDto.getNickname();
 		this.phoneNumber = myPageDto.getPhoneNumber();
 		this.name = myPageDto.getName();
-		this.password = myPageDto.getPassword();
 		this.introduce = myPageDto.getIntroduce();
 		this.detailAddress = myPageDto.getDetailAddress();
 		this.postCode = myPageDto.getPostCode();
