@@ -1,9 +1,11 @@
 package com.recipe.controller;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.jdt.internal.compiler.parser.Scanner;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -66,11 +68,16 @@ public class MypageController {
 		List<Member> followerList = myPageService.getFollowerList(id);
 		List<Member> followingList = myPageService.getFollowingList(id);
 		
-		int bookmarkCount= 0;
-	       for (Recipe recipe : recipeList) {
-	            Long recipeId = recipe.getId();
-	             bookmarkCount = bookmarkRepository.countByRecipeId(recipeId);
-	        }
+		List<MyPageDto> bookmark = new ArrayList<>();
+		
+		for(Recipe recipe : recipeList) {
+			
+			int bookmarkCount = bookmarkRepository.countByRecipeId(recipe.getId());
+			MyPageDto mypageDtos = new MyPageDto(recipe, bookmarkCount);
+			bookmark.add(mypageDtos);
+
+			
+		}
 
 		
 		model.addAttribute("followingList",followingList);
@@ -81,7 +88,7 @@ public class MypageController {
 		model.addAttribute("myReviewList" ,  myReviewList);
 		model.addAttribute("myCommentList" , myCommentList);
 		model.addAttribute("bookmarkList" , bookmarkList);
-		model.addAttribute("bookmarkCount" , bookmarkCount);
+		model.addAttribute("bookmark", bookmark);
 
 		model.addAttribute("recipeList" , recipeList); //레시피목록
 		model.addAttribute("myPageDto",myPageDto); //회원정보
@@ -130,6 +137,7 @@ public class MypageController {
 		model.addAttribute("myPageDto",myPageDto);//회원정보
 		model.addAttribute("allRecipeList" , allRecipeList); //레시피목록
 		model.addAttribute("popularRecipeList" , popularRecipeList); //레시피목록
+		
 		return "profile";
 	}
 	
@@ -145,11 +153,6 @@ public class MypageController {
 
 
 			myPageService.editMember(myPageDto,imgFile);
-			System.out.println(myPageDto.getImgUrl() + "imgUrl");
-			System.out.println(myPageDto.getImgName());
-			
-			System.out.println(imgFile + "imgFile");
-			
 			
 		} catch (Exception e) {
 			e.printStackTrace();

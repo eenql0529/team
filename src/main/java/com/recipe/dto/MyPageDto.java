@@ -44,7 +44,12 @@ public class MyPageDto {
 	//레시피목록
 	private Recipe recipeId;
 	private RecipeOrder recipeOrderId;
+	private int bookmarkCount;
 
+	public MyPageDto(Recipe recipeId, int bookmarkCount) {
+		this.recipeId = recipeId;
+		this.bookmarkCount = bookmarkCount;
+	}
 	
 	//찜목록
 	private Member member;

@@ -72,6 +72,8 @@ public class MyPageService {
 		updateImg(memberId,imgFile);
 		member.editMember(myPageDto);
 		
+		System.out.println(imgFile);
+		
 		
 		
 		return member.getId();
@@ -114,14 +116,14 @@ public class MyPageService {
 			String oriImgName = imgFile.getOriginalFilename();
 			String imgName = uploadFile(imgLocation, oriImgName, imgFile.getBytes());
 			String imgUrl = "/img/" + imgName;
-			System.out.println(imgUrl+"askjgnaskjnaskjgnasgkj");
 			//update쿼리문 실행
 			/* ★★★ 한번 insert를 진행하면 엔티티가 영속성 컨텍스트에 저장이 되므로 
 			그 이후에는 변경감지 기능이 동작하기 때문에 개발자는 update쿼리문을 쓰지 않고
 			엔티티 데이터만 변경해주면 된다. */
-			memberId.updateImg(oriImgName, imgName, imgUrl);
 			
+			memberId.updateImg(oriImgName, imgName, imgUrl);
 		}
+		
 		
 	}
 

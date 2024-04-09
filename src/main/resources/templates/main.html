@@ -16,39 +16,39 @@
 		<section class="RecipeListstyle__Section-sc-1s9b4ly-1 gIeeQD" th:if="${headerBestList.size() != 0 }">
 			<div class="styles__Title-sc-1ui0xdi-3 rQShB"><h1>RECIPES FOR YOU</h1><h2>맞춤추천 레시피를 둘러보세요.</h2></div>
 			<div class="h_line"></div>
-			<div class="RecipeListstyle__CardList-sc-1s9b4ly-2 bNkAnv">
-				<div class="RecipeListstyle__Card-sc-1s9b4ly-5 bHqDkK">
+			<div class="RecipeListstyle__CardList-sc-1s9b4ly-2 bNkAnv"th:if="${headerBestList.size() > 0 }">
+				<div class="RecipeListstyle__Card-sc-1s9b4ly-5 bHqDkK" >
 					<a href="#">
-						<img src="https://static.wtable.co.kr/image/production/service/recipe/471/62e517be-ca18-4c2a-8bc9-d9bb94965c42.jpg?size=800x800" th:alt="${headerBestList.get(0).title}" class="RecipeListstyle__CardImage-sc-1s9b4ly-14 iNbIQd">
+						<img src="/img/쭈꾸미1.jpg" th:alt="${headerBestList.get(0).title}" class="RecipeListstyle__CardImage-sc-1s9b4ly-14 iNbIQd">
 						<div class="RecipeListstyle__CardGredient-sc-1s9b4ly-3 hUapsG"></div>
 						<div class="RecipeListstyle__CardMeta-sc-1s9b4ly-6 iFMKeY">
 							<p class="RecipeListstyle__CardSubTitle-sc-1s9b4ly-7 hwxlrw">[[${headerBestList.get(0).subTitle}]]</p><p class="RecipeListstyle__CardTitle-sc-1s9b4ly-12 eMHKwY">[[${headerBestList.get(0).title}]]</p>
 							</div>
 					</a>
 				</div>
-			<div class="RecipeListstyle__CardSm-sc-1s9b4ly-9 bSdIJY">
+			<div class="RecipeListstyle__CardSm-sc-1s9b4ly-9 bSdIJY" th:if="${headerBestList.size() > 1 }">
 				<a href="#">
-					<img src="https://static.wtable.co.kr/image/production/service/recipe/1430/0f4ee459-9c66-4d5a-9770-69c5af9f4d4c.jpg?size=500x500" th:alt="${headerBestList.get(1).title}" class="RecipeListstyle__CardImage-sc-1s9b4ly-14 RecipeListstyle__CardMdImage-sc-1s9b4ly-15 gZeRDV">
+					<img src="https://static.wtable.co.kr/image/production/service/recipe/1430/0f4ee459-9c66-4d5a-9770-69c5af9f4d4c.jpg?size=500x500"  class="RecipeListstyle__CardImage-sc-1s9b4ly-14 RecipeListstyle__CardMdImage-sc-1s9b4ly-15 gZeRDV">
 					<div class="RecipeListstyle__CardSmGredient-sc-1s9b4ly-4 eDwCCr gredient"></div>
-					<div class="RecipeListstyle__CardSmMeta-sc-1s9b4ly-10 dHZATN">
-						<div class="RecipeListstyle__CardSmSubTitle-sc-1s9b4ly-11 cgGeDp">[[${headerBestList.get(1).title}]]</div>
+					<div class="RecipeListstyle__CardSmMeta-sc-1s9b4ly-10 dHZATN" >
+						<div class="RecipeListstyle__CardSmSubTitle-sc-1s9b4ly-11 cgGeDp"th:text="${headerBestList.get(1).title}"></div>
 					</div>
 				</a>
 			</div>
-			<div class="RecipeListstyle__CardSm-sc-1s9b4ly-9 bSdIJY">
+			<div class="RecipeListstyle__CardSm-sc-1s9b4ly-9 bSdIJY"th:if="${headerBestList.size() > 2 }">
 				<a href="#">
 					<img src="https://static.wtable.co.kr/image/production/service/recipe/1689/503d97ac-7b2d-4696-aebd-8f694949dd40.jpg?size=500x500" th:alt="${headerBestList.get(2).title}" class="RecipeListstyle__CardImage-sc-1s9b4ly-14 RecipeListstyle__CardMdImage-sc-1s9b4ly-15 gZeRDV">
 				<div class="RecipeListstyle__CardSmGredient-sc-1s9b4ly-4 eDwCCr gredient"></div>
-			<div class="RecipeListstyle__CardSmMeta-sc-1s9b4ly-10 dHZATN">
-				<div class="RecipeListstyle__CardSmSubTitle-sc-1s9b4ly-11 cgGeDp">[[${headerBestList.get(2).title}]]</div>
+			<div class="RecipeListstyle__CardSmMeta-sc-1s9b4ly-10 dHZATN" >
+				<div class="RecipeListstyle__CardSmSubTitle-sc-1s9b4ly-11 cgGeDp"th:text="${headerBestList.get(2).title}"></div>
 			</div>
 			</a>
 			</div>
-			<div class="RecipeListstyle__Card-sc-1s9b4ly-5 bHqDkK">
+			<div class="RecipeListstyle__Card-sc-1s9b4ly-5 bHqDkK"th:if="${headerBestList.size() > 3 }">
 				<a href="#"><img src="https://static.wtable.co.kr/image/production/service/recipe/170/88f14bd3-d922-4d67-8c38-1dcf9fee27bc.jpg?size=800x800" th:alt="${headerBestList.get(3).title}" class="RecipeListstyle__CardImage-sc-1s9b4ly-14 RecipeListstyle__CardMdImage-sc-1s9b4ly-15 gZeRDV">
 				<div class="RecipeListstyle__CardGredient-sc-1s9b4ly-3 hUapsG"></div>
-				<div class="RecipeListstyle__CardMdMeta-sc-1s9b4ly-8 jZZqhz">
-					<p class="RecipeListstyle__CardSubTitle-sc-1s9b4ly-7 hwxlrw">[[${headerBestList.get(3).subTitle}]]</p><p class="RecipeListstyle__CardTitle-sc-1s9b4ly-12 eMHKwY">[[${headerBestList.get(3).title}]]</p>
+				<div class="RecipeListstyle__CardMdMeta-sc-1s9b4ly-8 jZZqhz" >
+					<p class="RecipeListstyle__CardSubTitle-sc-1s9b4ly-7 hwxlrw"th:text="${headerBestList.get(3).subTitle}"></p><p class="RecipeListstyle__CardTitle-sc-1s9b4ly-12 eMHKwY" th:text="${headerBestList.get(3).title}"></p>
 				</div>
 				</a>
 				</div>
@@ -76,7 +76,7 @@
 		  <div class="collection-item book">
 		  <div class="item-cover">
 				<a href="/">
-		  <img src="img/recipe-1.jpg" th:alt="${n_r.title}"  class="item-cover-image">
+		  <img src="/img/쭈꾸미1.jpg" th:alt="${n_r.title}"  class="item-cover-image">
 				</a>
 		  </div>
 		    <div class="item-meta">
@@ -124,7 +124,7 @@
 		  <div class="collection-item book">
 		  <div class="item-cover">
 				<a href="/">
-		  <img src="img/recipe-1.jpg" th:alt="${n_b.title}"  class="item-cover-image">
+		  <img src="/img/쭈꾸미1.jpg" th:alt="${n_b.title}"  class="item-cover-image">
 				</a>
 		  </div>
 		    <div class="item-meta">

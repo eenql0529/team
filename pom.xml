@@ -111,10 +111,12 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	</dependency>
 
 		<!--이메일로 인증번호 받기 회원가입용-->
-	<dependency>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-mail</artifactId>
-	</dependency>
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-mail</artifactId>
+</dependency>
+
+
 
 </dependencies>
 

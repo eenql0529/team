@@ -30,6 +30,7 @@ public class BookMark extends BaseEntity {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "recipe_id")
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Recipe recipe;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
