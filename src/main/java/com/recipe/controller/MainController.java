@@ -45,8 +45,6 @@ public class MainController {
 	    List<RecipeMainDto> mainBestList = recipeService.getRecipeBestList(); // 베스트 레시피
 	    model.addAttribute("mainBestList" , mainBestList);
 	    
-	    List<RecipeMainDto> mainNewList = recipeService.getRecipeNewList(); // new 레시피
-	    model.addAttribute("mainNewList" , mainNewList);
 	    
 	    List<MemberMainDto> rankMemberList = memberService.getMemberBestList(); //베스트 쉐프 
 	    model.addAttribute("rankMemberList",rankMemberList);

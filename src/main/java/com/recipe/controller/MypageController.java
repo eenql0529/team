@@ -75,9 +75,11 @@ public class MypageController {
 			int bookmarkCount = bookmarkRepository.countByRecipeId(recipe.getId());
 			MyPageDto mypageDtos = new MyPageDto(recipe, bookmarkCount);
 			bookmark.add(mypageDtos);
+			System.out.println(recipe.getImageUrl());
 
 			
 		}
+
 
 		
 		model.addAttribute("followingList",followingList);
@@ -147,6 +149,10 @@ public class MypageController {
 	@PostMapping(value = "/myPage/{id}")
 	public String editMember(@PathVariable("id") Long id, @Valid MyPageDto myPageDto, Model model,@RequestParam("imgFile") MultipartFile imgFile) {
 		
+
+			
+		
+		
 		try {
 		       // 이미지 파일 업로드 처리
 	        // imgUrl을 MyPageDto에 설정 
@@ -160,6 +166,24 @@ public class MypageController {
 		
 		return "redirect:/myPage";
 	}
+	
+	//닉네임 중복 체크
+	@ResponseBody
+    @GetMapping("/checkNickname")
+    public boolean checkNickname(@RequestParam("nickname") String nickname) {
+        // 중복되지 않으면 true, 중복되면 false를 반환합니다.
+    	
+    	System.out.println(memberRepository.findByNickname(nickname));
+		if(memberRepository.findByNickname(nickname)==null) {
+			return true;
+		}else {
+			return false;
+		}
+		
+	    
+    }
+
+	
 	
 	//회원탈퇴
 	@DeleteMapping("/myPage/deleteMember/{memberId}")
@@ -183,7 +207,7 @@ public class MypageController {
 		return new ResponseEntity<Long>(recipeId, HttpStatus.OK);
 	}
 	
-	//찜목록 페이지 -> 찜삭제
+	//북마크 페이지 -> 북마크 삭제
 	@DeleteMapping("/myPage/deleteBookmark/{bookmarkId}")
 	public @ResponseBody ResponseEntity deleteBookmark(@PathVariable("bookmarkId") Long bookmarkId) {
 		myPageService.deleteBookmark(bookmarkId);
@@ -191,7 +215,7 @@ public class MypageController {
 		
 		return new ResponseEntity<Long>(bookmarkId, HttpStatus.OK);
 	}
-	//찜목록 페이지 -> 찜삭제취소
+	//북마크 페이지 -> 북마크 삭제취소
 	@PostMapping("/myPage/undeleteBookmark/{bookmarkId}")
 	public @ResponseBody ResponseEntity undeleteBookmark(@PathVariable("bookmarkId") Long bookmarkId) {
 		myPageService.undeleteBookmark(bookmarkId);

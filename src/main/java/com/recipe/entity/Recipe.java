@@ -42,11 +42,14 @@ public class Recipe extends BaseEntity {
     @Column(length = 1000)
     private String intro; //레시피 소개
     
+    @Column(length = 1000)
+    private String description;
     //소요시간
     private String durTime;
     
     //난이도
     private String level;
+    private int bookmarkCount; //북마크
     
     private int count = 0; //조회수
     

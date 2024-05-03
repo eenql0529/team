@@ -59,34 +59,30 @@ function showContent(contentId) {
             reader.readAsDataURL(fileInput.files[0]);
         }
     }
-    
-    function checkNicknameAvailability() {
-        const nicknameInput = document.getElementById("nickname");
-        const nickname = nicknameInput.value;
-        const nicknameFeedback = document.getElementById("nicknameFeedback");
+    function checkNicknameAvailability(input) {
+		const nicknameInput = document.getElementById("nickname");
+    const nickname = input.value;
+    const errorMessage = document.getElementById("errorMessage");
 
-        // Make an AJAX request to the server to check nickname availability
-        // You can use libraries like Axios or jQuery for the AJAX request
-
-        // Simulate a response from the server
-        const isAvailable = true; //Replace with actual response from the server
-
-        if (isAvailable) {
-            nicknameInput.classList.remove("is-invalid");
+    // AJAX 요청
+    fetch(`/checkNickname?nickname=${nickname}`)
+        .then(response => response.json())
+        .then(data => {
+            if (data) {
+                // 닉네임이 중복되지 않으면 에러 메시지를 숨깁니다.
+                errorMessage.textContent = "";
+                            nicknameInput.classList.remove("is-invalid");
             nicknameInput.classList.add("is-valid");
-            nicknameFeedback.innerHTML = `
-                <div class="valid-feedback">
-                    성공! 사용 가능한 닉네임입니다.
-                </div>`;
-        } else {
-            nicknameInput.classList.remove("is-valid");
+            } else {
+                // 닉네임이 중복되면 에러 메시지를 업데이트합니다.
+                errorMessage.textContent = "해당 닉네임은 이미 사용 중입니다.";
+                            nicknameInput.classList.remove("is-valid");
             nicknameInput.classList.add("is-invalid");
-            nicknameFeedback.innerHTML = `
-                <div class="invalid-feedback">
-                    죄송합니다. 해당 닉네임은 이미 사용 중입니다. 다른 것을 시도하시겠습니까?
-                </div>`;
-        }
-    }
+            }
+        })
+        .catch(error => console.error('Error:', error));
+}
+
     // 아래 함수를 호출하여 주소 정보를 입력 폼에 설정합니다.
     function fillAddressFields(addressData) {
         document.getElementById('sample6_postcode').value = addressData.zonecode;

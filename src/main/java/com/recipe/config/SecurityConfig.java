@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
@@ -23,7 +25,7 @@ import com.recipe.oauth.PrincipalOauth2UserService;
 @EnableWebSecurity //spring security filterChain이 자동으로 포함되게 한다
 public class SecurityConfig {
 	
-	private PrincipalOauth2UserService principalOauth2UserService;
+	private final PrincipalOauth2UserService principalOauth2UserService;
 	
 	@Autowired
 	private MyAuthenticationSuccessHandler myAuthenticationSuccessHandler;
@@ -42,8 +44,7 @@ public class SecurityConfig {
 	MvcRequestMatcher.Builder mvc(HandlerMappingIntrospector introspector) {
 		return new MvcRequestMatcher.Builder(introspector);
 	}
-	
-	
+
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http,  MvcRequestMatcher.Builder mvc ) throws Exception {
 		//람다로 변경됨
@@ -65,8 +66,11 @@ public class SecurityConfig {
 				.loginPage("/members/login")
 				.userInfoEndpoint(userInfoEndpoint -> userInfoEndpoint
 				.userService(principalOauth2UserService))
+
 				.successHandler(LoginSuccessHandler)
 				.failureUrl("/members/login/error")
+				.userInfoEndpoint(userInfoEndpoint -> userInfoEndpoint
+						.userService(principalOauth2UserService))
 				)
 		.formLogin(formLogin -> formLogin //2. 로그인에 관련된 설정
 				.loginPage("/members/login") //로그인 페이지 URL 설정
@@ -87,5 +91,7 @@ public class SecurityConfig {
 		
 	    return http.build();
 	}
+	
+
 	
 }

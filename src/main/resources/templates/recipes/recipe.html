@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout1}">
+
+<div layout:fragment="content">
+
+
+
+
+    <!-- Single Recipe Section Begin -->
+    <section class="single-page-recipe spad">
+        <div class="recipe-top">
+            <div class="container-fluid">
+
+                <img src="img/recipe-single.jpg" alt="">
+            </div>
+        </div>
+        <div class="container">
+            <div class="row" style="background-color: ghostwhite;">
+                <div class="col-lg-5">
+                    <div class="ingredients-item">
+                        <div class="intro-item">
+                            <img th:src="${recipeDetail.imageUrl}" alt="">
+                            <h2>[[${recipeDetail.subTitle}]] <br>[[${recipeDetail.title}]]</h2>
+                            <div class="rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <div class="reviews">4.9 from 25 reviews</div>
+                            <div class="recipe-time">
+                                <ul>
+                                    <li>조리시간: <span th:text="${recipeDetail.durTime}">10 min</span></li>
+                                    <li>난이도: <span th:text="${recipeDetail.level}">10 min</span></li>
+                                    
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="ingredient-list">
+
+                            <div class="list-item">
+                               
+                                <div class="salad-list">
+                                    <h6>주 재료</h6>
+                                    <ul >
+
+										<th:block th:each="ingre, status: ${recipeIngreList}">
+   							 <li th:if="${T(org.springframework.util.StringUtils).hasText(ingre.basicIngreName)}" th:text="${ingre.basicIngreName}">1 brick of frozen udon</li>
+										</th:block>
+
+                                    </ul>
+                                </div>
+                                <div class="dressing-list">
+                                    <h6>보조 재료</h6>
+                                    <ul>
+										<th:block th:each="ingre, status: ${recipeIngreList}">
+   							 <li th:if="${T(org.springframework.util.StringUtils).hasText(ingre.seasonIngreName)}" th:text="${ingre.seasonIngreName}">1 brick of frozen udon</li>
+										</th:block>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-lg-7">
+                    <div class="recipe-right">
+                        <div class="recipe-desc">
+                            <h3>Description</h3>
+                            <p th:text="${recipeDetail.description}" style="font-size: 21px;
+    line-height: 29px;"></p>
+                            <p></p>
+                        </div>
+                        <div class="instruction-list">
+                            <h3>Instructions</h3>
+                            <ul>
+                                <li th:each="order, status: ${recipeOrder}">
+                                    
+                                    <div class="jori_div">
+                                    <img th:src="${order.imgUrl}" alt="요리사진">
+                                    <div class="text_div">
+                                    <p class="step">STEP  [[${status.index+1}]]</p>
+                                    <hr style="margin-left: 10px">
+                                    <p class="ex" th:text="${order.content}"></p>
+                                    </div>
+                                    </div>
+
+                                </li>
+
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+</div>
+
+</html>

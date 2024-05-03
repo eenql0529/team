@@ -697,7 +697,8 @@ svg {
 									<label class="col-form-label mt-4" for="nickname">닉네임</label> <input
 										th:field="${myPageDto.nickname}" type="text"
 										placeholder="사용하실 닉네임을 2~8자 사이로 입력해주세요" maxlength="8"
-										class="form-control" id="nickname" style="width: 315px;">
+										class="form-control" id="nickname"  onblur="checkNicknameAvailability(this)"style="width: 315px;">
+										<p id="errorMessage" style="padding-left:5px;"></p>
 								</div>
 
 

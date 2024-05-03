@@ -15,6 +15,12 @@ import org.springframework.web.multipart.MultipartFile;
 import com.recipe.constant.CategoryEnum;
 import com.recipe.constant.WritingStatus;
 import com.recipe.dto.RecipeNewDto;
+import com.recipe.entity.Recipe;
+import com.recipe.entity.RecipeIngre;
+import com.recipe.entity.RecipeOrder;
+import com.recipe.repository.RecipeIngreRepository;
+import com.recipe.repository.RecipeOrderRepository;
+import com.recipe.repository.RecipeRepository;
 import com.recipe.service.RecipeService;
 
 import jakarta.validation.Valid;
@@ -25,7 +31,9 @@ import lombok.RequiredArgsConstructor;
 public class RecipeController {
 
 	private final RecipeService recipeService;
-
+	private final RecipeRepository recipeRepository;
+	private final RecipeOrderRepository recipeOrderRepository;
+	private final RecipeIngreRepository recipeIngreRepository;
 	// 레시피 등록화면
 	@GetMapping(value = "/myPage/recipe/new")
 	public String recipe(Model model) {
@@ -123,6 +131,23 @@ public class RecipeController {
 			}
 			return "redirect:/";
 	}
-	
+	@GetMapping(value = "/recipe/{Id}")
+	public String recipe(Model model, @PathVariable("Id") Long Id) {
+		
+		Recipe recipeDetail = recipeRepository.getRecipeDetailByid(Id);
+		
+
+		
+		recipeRepository.setaddview(Id);
+		List<RecipeOrder> recipeOrderList = recipeOrderRepository.getRecipeOrderByid(Id);
+		List<RecipeIngre> recipeIngreList = recipeIngreRepository.getRecipeIngreByid(Id);
+
+		model.addAttribute("recipeIngreList" ,recipeIngreList);
+		model.addAttribute("recipeOrder", recipeOrderList);
+
+		model.addAttribute("recipeDetail",recipeDetail);
+		
+		return "recipes/recipe";
+	}
 	
 }

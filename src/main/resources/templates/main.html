@@ -7,48 +7,50 @@
 <meta name="_csrf_header" th:content="${_csrf.headerName}" />
 </head>	
 	<div layout:fragment="content">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	
 	<th:block layout:fragment="css">
 	<link rel="stylesheet" href="css/main.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
 	</th:block>
 	<div class="main_box pb-5">
-		<section class="RecipeListstyle__Section-sc-1s9b4ly-1 gIeeQD" th:if="${headerBestList.size() != 0 }">
+		<section class="RecipeListstyle__Section-sc-1s9b4ly-1 gIeeQD">
 			<div class="styles__Title-sc-1ui0xdi-3 rQShB"><h1>RECIPES FOR YOU</h1><h2>맞춤추천 레시피를 둘러보세요.</h2></div>
 			<div class="h_line"></div>
-			<div class="RecipeListstyle__CardList-sc-1s9b4ly-2 bNkAnv"th:if="${headerBestList.size() > 0 }">
-				<div class="RecipeListstyle__Card-sc-1s9b4ly-5 bHqDkK" >
+			<div class="RecipeListstyle__CardList-sc-1s9b4ly-2 bNkAnv">
+				<div class="RecipeListstyle__Card-sc-1s9b4ly-5 bHqDkK">
 					<a href="#">
-						<img src="/img/쭈꾸미1.jpg" th:alt="${headerBestList.get(0).title}" class="RecipeListstyle__CardImage-sc-1s9b4ly-14 iNbIQd">
+						<img src="https://static.wtable.co.kr/image/production/service/recipe/471/62e517be-ca18-4c2a-8bc9-d9bb94965c42.jpg?size=800x800" class="RecipeListstyle__CardImage-sc-1s9b4ly-14 iNbIQd">
 						<div class="RecipeListstyle__CardGredient-sc-1s9b4ly-3 hUapsG"></div>
 						<div class="RecipeListstyle__CardMeta-sc-1s9b4ly-6 iFMKeY">
-							<p class="RecipeListstyle__CardSubTitle-sc-1s9b4ly-7 hwxlrw">[[${headerBestList.get(0).subTitle}]]</p><p class="RecipeListstyle__CardTitle-sc-1s9b4ly-12 eMHKwY">[[${headerBestList.get(0).title}]]</p>
+							<p class="RecipeListstyle__CardSubTitle-sc-1s9b4ly-7 hwxlrw"></p><p class="RecipeListstyle__CardTitle-sc-1s9b4ly-12 eMHKwY"></p>
 							</div>
 					</a>
 				</div>
-			<div class="RecipeListstyle__CardSm-sc-1s9b4ly-9 bSdIJY" th:if="${headerBestList.size() > 1 }">
+			<div class="RecipeListstyle__CardSm-sc-1s9b4ly-9 bSdIJY">
 				<a href="#">
-					<img src="https://static.wtable.co.kr/image/production/service/recipe/1430/0f4ee459-9c66-4d5a-9770-69c5af9f4d4c.jpg?size=500x500"  class="RecipeListstyle__CardImage-sc-1s9b4ly-14 RecipeListstyle__CardMdImage-sc-1s9b4ly-15 gZeRDV">
+					<img src="https://static.wtable.co.kr/image/production/service/recipe/1430/0f4ee459-9c66-4d5a-9770-69c5af9f4d4c.jpg?size=500x500" class="RecipeListstyle__CardImage-sc-1s9b4ly-14 RecipeListstyle__CardMdImage-sc-1s9b4ly-15 gZeRDV">
 					<div class="RecipeListstyle__CardSmGredient-sc-1s9b4ly-4 eDwCCr gredient"></div>
-					<div class="RecipeListstyle__CardSmMeta-sc-1s9b4ly-10 dHZATN" >
-						<div class="RecipeListstyle__CardSmSubTitle-sc-1s9b4ly-11 cgGeDp"th:text="${headerBestList.get(1).title}"></div>
+					<div class="RecipeListstyle__CardSmMeta-sc-1s9b4ly-10 dHZATN">
+						<div class="RecipeListstyle__CardSmSubTitle-sc-1s9b4ly-11 cgGeDp"></div>
 					</div>
 				</a>
 			</div>
-			<div class="RecipeListstyle__CardSm-sc-1s9b4ly-9 bSdIJY"th:if="${headerBestList.size() > 2 }">
+			<div class="RecipeListstyle__CardSm-sc-1s9b4ly-9 bSdIJY">
 				<a href="#">
-					<img src="https://static.wtable.co.kr/image/production/service/recipe/1689/503d97ac-7b2d-4696-aebd-8f694949dd40.jpg?size=500x500" th:alt="${headerBestList.get(2).title}" class="RecipeListstyle__CardImage-sc-1s9b4ly-14 RecipeListstyle__CardMdImage-sc-1s9b4ly-15 gZeRDV">
+					<img src="https://static.wtable.co.kr/image/production/service/recipe/1689/503d97ac-7b2d-4696-aebd-8f694949dd40.jpg?size=500x500"  class="RecipeListstyle__CardImage-sc-1s9b4ly-14 RecipeListstyle__CardMdImage-sc-1s9b4ly-15 gZeRDV">
 				<div class="RecipeListstyle__CardSmGredient-sc-1s9b4ly-4 eDwCCr gredient"></div>
-			<div class="RecipeListstyle__CardSmMeta-sc-1s9b4ly-10 dHZATN" >
-				<div class="RecipeListstyle__CardSmSubTitle-sc-1s9b4ly-11 cgGeDp"th:text="${headerBestList.get(2).title}"></div>
+			<div class="RecipeListstyle__CardSmMeta-sc-1s9b4ly-10 dHZATN">
+				<div class="RecipeListstyle__CardSmSubTitle-sc-1s9b4ly-11 cgGeDp"></div>
 			</div>
 			</a>
 			</div>
-			<div class="RecipeListstyle__Card-sc-1s9b4ly-5 bHqDkK"th:if="${headerBestList.size() > 3 }">
-				<a href="#"><img src="https://static.wtable.co.kr/image/production/service/recipe/170/88f14bd3-d922-4d67-8c38-1dcf9fee27bc.jpg?size=800x800" th:alt="${headerBestList.get(3).title}" class="RecipeListstyle__CardImage-sc-1s9b4ly-14 RecipeListstyle__CardMdImage-sc-1s9b4ly-15 gZeRDV">
+			<div class="RecipeListstyle__Card-sc-1s9b4ly-5 bHqDkK">
+				<a href="#"><img src="https://static.wtable.co.kr/image/production/service/recipe/170/88f14bd3-d922-4d67-8c38-1dcf9fee27bc.jpg?size=800x800"  class="RecipeListstyle__CardImage-sc-1s9b4ly-14 RecipeListstyle__CardMdImage-sc-1s9b4ly-15 gZeRDV">
 				<div class="RecipeListstyle__CardGredient-sc-1s9b4ly-3 hUapsG"></div>
-				<div class="RecipeListstyle__CardMdMeta-sc-1s9b4ly-8 jZZqhz" >
-					<p class="RecipeListstyle__CardSubTitle-sc-1s9b4ly-7 hwxlrw"th:text="${headerBestList.get(3).subTitle}"></p><p class="RecipeListstyle__CardTitle-sc-1s9b4ly-12 eMHKwY" th:text="${headerBestList.get(3).title}"></p>
+				<div class="RecipeListstyle__CardMdMeta-sc-1s9b4ly-8 jZZqhz">
+					<p class="RecipeListstyle__CardSubTitle-sc-1s9b4ly-7 hwxlrw"></p><p class="RecipeListstyle__CardTitle-sc-1s9b4ly-12 eMHKwY"></p>
 				</div>
 				</a>
 				</div>
@@ -60,53 +62,8 @@
 
 	</div>
 	
-	<div class="container" th:if="${mainNewList.size() != 0 }">
-			<div class="best_recipe_box">
-				
-				<h2 class="def_title">신규 레시피 
-	<a href="/category?type=order" class="fr">더보기 ></a>
-	</h2>
-	<div class="best_recipe_slider slider-wrap rec_list">
-	 
-	<th:block th:each=" n_r , status:${mainNewList}">
-		
-    <div class="slider-items">
-		
-      <div class="item item-related-book">
-		  <div class="collection-item book">
-		  <div class="item-cover">
-				<a href="/">
-		  <img src="/img/쭈꾸미1.jpg" th:alt="${n_r.title}"  class="item-cover-image">
-				</a>
-		  </div>
-		    <div class="item-meta">
-		<div class="item-title">
-			<h4>
-				<a href="/" tabindex="0">[[${n_r.title}]]</a>
-			</h4>
-		</div>
-		<div class="common_sp_caption_rv_name d-flex ">
-                <a th:href="'/profile/' + ${n_r.memberId}" style="display: inline-block; vertical-align: bottom;">
-					<img src="/img/free-icon-member-5867267.png">
-					민규민규</a>
-				<span class="count_s" th:text="'조회수 : ' + ${#numbers.formatInteger(n_r.count, 0, 'COMMA')}">
-				</span>
-            </div>
-		</div>
-		  </div>
-	  </div>
-	</div>
-	</th:block>
-    </div>
-			</div>
-			
-			
-			
-			
-		
-		
-		</div>
-		<div class="best_b1" th:if="${mainBestList.size() != 0 }">
+
+		<div class="best_b1">
 			<div class="best_b2"> 
 				
 		<div class="best_recipe_box">
@@ -124,7 +81,7 @@
 		  <div class="collection-item book">
 		  <div class="item-cover">
 				<a href="/">
-		  <img src="/img/쭈꾸미1.jpg" th:alt="${n_b.title}"  class="item-cover-image">
+		  <img th:src="${n_b.imageUrl}" th:alt="${n_b.title}"  class="item-cover-image">
 				</a>
 		  </div>
 		    <div class="item-meta">
@@ -134,15 +91,15 @@
 			</h4>
 		</div>
 		<div class="common_sp_caption_rv_name d-flex ">
-                <a th:href="'/profile/' + ${n_b.memberId}" style="display: inline-block; vertical-align: bottom;">
+                <a href="#" style="display: inline-block; vertical-align: bottom;">
 					<img src="/img/free-icon-member-5867267.png">
-					민규민규</a>
+					[[${n_b.nickname}]]</a>
             </div>
 				<div class="RecipeItemstyle__Time-sc-1gt7vz8-6 kKXboO mx_1">
 						<i class="fa-solid fa-star fa-xs" title="평점"></i>
 						<span class="RecipeItemstyle__SummaryText-sc-1gt7vz8-5 MiXMV">
 							[[${n_b.retingAvg}]]([[${n_b.reviewCount}]])</span>
-						<span class="count_s" title="조회수">조회수 : 5,000</span>
+						<span class="count_s" title="조회수">조회수 : [[${n_b.count}]]</span>
 
 					</div>
 		</div>
@@ -156,7 +113,7 @@
 			
 		</div>
 			
-		<div class="container" th:if="${rankMemberList.size() != 0}">	
+		<div class="container">	
 			<div class="main_box main_hit">
 			<h2 class="def_title">베스트 쉐프!</h2>
 			<ul class="clr ul_l">
@@ -164,9 +121,9 @@
 				<th:block th:each="bestMember , status:${rankMemberList}">
 							<li class="rec_list" style="display:flex">
 					<div class="num">[[${status.index+1}]]</div>
-					<a th:href="'/profile/' + ${bestMember.nickname}" class="clr">
+					<a href="#" class="clr">
 						<div class="img_box">
-							<img th:src="${bestMember.imgUrl}" alt="회원이미지">
+							<img th:src="${bestMember.imgUrl}" alt="등록된 이미지가 없습니다">
 							</div>
 						<div class="text_box">
 							<p class="s_title">자개소개 칸</p>
@@ -178,6 +135,7 @@
 						<a class="like" onclick="followOk(this)" th:attr="data-member-id=${bestMember.id}"  title="팔로우"> <i class="fa-solid fa-heart follow"></i>  </a>
 				</li>
 				</th:block>
+
 								
 							</ul>
 			<a href="javascript:more_recipe();" class="more more_rec">더보기</a>
@@ -331,6 +289,7 @@ function more_recipe() {
 						cache : false,
 						success : function(result, status, jqXHR) {
 							 alert(jqXHR.responseText);
+							 window.location.reload(true); 
 							
 						},
 						error : function(jqXHR, status, error) {
@@ -347,10 +306,9 @@ function more_recipe() {
 
 		}	
  
- 	
+ 
           
     </script>
-	
 	
 	</th:block>
 	
